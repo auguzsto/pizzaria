@@ -1,0 +1,19 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pizzaria/src/screens/home/home_screen.dart';
+import 'package:pizzaria/src/themes/colors/color_schemes.g.dart';
+import 'package:pizzaria/src/themes/themes.dart';
+
+class AppWidget extends StatelessWidget {
+  const AppWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: lightColorTheme,
+      darkTheme: darkColorTheme,
+      home: const HomeScreen(),
+    );
+  }
+}
