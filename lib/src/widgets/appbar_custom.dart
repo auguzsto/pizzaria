@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pizzaria/src/models/user_model.dart';
+import 'package:pizzaria/src/screens/auth/signin_screen.dart';
 
 class AppBarCustom extends StatelessWidget {
-  const AppBarCustom({super.key});
+  AppBarCustom({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
+      children: [
         Avatar(),
-        Logo(),
-        Cart(),
+        const Logo(),
+        const Cart(),
       ],
     );
   }
@@ -36,16 +39,16 @@ class Logo extends StatelessWidget {
 
 //Avatar
 class Avatar extends StatelessWidget {
-  const Avatar({super.key});
+  Avatar({super.key});
 
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
       child: IconButton(
-        onPressed: () {},
-        icon: const Icon(
-          Icons.person,
-        ),
+        onPressed: () {
+          Get.to(SignInScreen());
+        },
+        icon: const Text('T'),
       ),
     );
   }

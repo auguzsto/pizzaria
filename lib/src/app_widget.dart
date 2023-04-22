@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pizzaria/src/models/user_model.dart';
 import 'package:pizzaria/src/screens/home/home_screen.dart';
-import 'package:pizzaria/src/themes/colors/color_schemes.g.dart';
+
 import 'package:pizzaria/src/themes/themes.dart';
 
 class AppWidget extends StatelessWidget {
@@ -14,6 +15,7 @@ class AppWidget extends StatelessWidget {
       theme: lightColorTheme,
       darkTheme: darkColorTheme,
       home: const HomeScreen(),
+      onInit: () => Get.lazyPut(() => UserModel(), fenix: true),
     );
   }
 }
