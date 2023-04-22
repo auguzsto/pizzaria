@@ -5,7 +5,10 @@ import 'package:pizzaria/src/constants/app.dart';
 import 'package:pizzaria/src/models/user_model.dart';
 
 abstract class IHttpClient {
-  Future<List> get({required String table, String? column});
+  Future<List> get(
+      {required String table,
+      String? column,
+      Map<String, String>? authorization});
   Future post({required String table, required Object body, String? column});
   Future<void> delete();
 }
@@ -19,8 +22,14 @@ class HttpClient implements IHttpClient {
   }
 
   @override
-  Future<List> get({required String table, String? column}) async {
-    final response = await http.get(Uri.parse("$baseUrl/$table?$column"));
+  Future<List> get(
+      {required String table,
+      String? column,
+      Map<String, String>? authorization}) async {
+    final response = await http.get(
+      Uri.parse("$baseUrl/$table?$column"),
+      headers: authorization,
+    );
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
     } else if (response.statusCode == 401) {

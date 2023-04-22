@@ -19,6 +19,7 @@ class AuthController extends GetxController {
             user!.id = value['id'];
             user.username = value['username'];
             user.vendor = value['vendor'];
+            user.basicToken = value['basicToken'];
           });
 
           Get.offAll(const HomeScreen());

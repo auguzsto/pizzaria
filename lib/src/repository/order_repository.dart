@@ -1,3 +1,4 @@
+import 'package:pizzaria/src/models/user_model.dart';
 import 'package:pizzaria/src/services/http_client.dart';
 
 class OrderRepository {
@@ -5,5 +6,15 @@ class OrderRepository {
 
   Future<List> get() async {
     return await client.get(table: "pedido");
+  }
+
+  Future<List> getByUserId(UserModel? userModel) async {
+    return await client.get(
+      table: "pedido",
+      column: "idUser=${userModel?.id}",
+      authorization: {
+        "Authorization": "Basic ${userModel!.basicToken}",
+      },
+    );
   }
 }

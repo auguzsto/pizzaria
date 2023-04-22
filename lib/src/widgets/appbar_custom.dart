@@ -47,9 +47,8 @@ class Avatar extends StatelessWidget {
     final userModel = Get.find<UserModel>(tag: "user");
     return CircleAvatar(
       child: IconButton(
-        onPressed: () {
-          Get.to(SignInScreen());
-        },
+        onPressed:
+            userModel.username != null ? () {} : () => Get.to(SignInScreen()),
         icon: userModel.username != null
             ? Text(userModel.username![0])
             : const Icon(Icons.person),

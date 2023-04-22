@@ -8,6 +8,6 @@ class MenuRepository {
   }
 
   Future<List> getById({required String id}) async {
-    return await client.get(table: "item", column: "id?=$id");
+    return await client.get(table: "item?", column: "id=$id");
   }
 }
