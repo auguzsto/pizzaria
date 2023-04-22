@@ -60,7 +60,7 @@ class Cart extends StatelessWidget {
     return IconButton(
       onPressed: () {},
       icon: const Icon(
-        Icons.shopping_bag,
+        Icons.shopping_cart,
         size: 28,
       ),
     );

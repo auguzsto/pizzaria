@@ -11,6 +11,7 @@ class MenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final menuController = CarteController();
+    final screenSize = MediaQuery.of(context).size;
 
     //Future
     return FutureBuilder(
@@ -26,7 +27,7 @@ class MenuScreen extends StatelessWidget {
         //Grid
         return GridView.count(
           shrinkWrap: false,
-          crossAxisCount: 4,
+          crossAxisCount: screenSize.height < 800 ? 2 : 4,
           children: List.generate(
             snapshot.data!.length,
             (index) {
@@ -51,22 +52,19 @@ class MenuScreen extends StatelessWidget {
                         child: Text(
                           itemModel.name!,
                           style: GoogleFonts.roboto(
-                              textStyle: TextStyle(
-                            color: lightColorScheme.background,
-                          )),
+                            textStyle: TextStyle(
+                              color: lightColorScheme.background,
+                            ),
+                          ),
                         ),
                       ),
                     ),
 
                     //Picture
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height / 4,
-                      width: MediaQuery.of(context).size.width / 4,
-                      child: Image.network(
-                        "https://i0.wp.com/www.multarte.com.br/wp-content/uploads/2019/03/pizza-png-transparente.png?resize=600%2C600&ssl=1",
-                        scale: 0.1,
-                        fit: BoxFit.contain,
-                      ),
+                    Image.network(
+                      "https://i0.wp.com/www.multarte.com.br/wp-content/uploads/2019/03/pizza-png-transparente.png?resize=600%2C600&ssl=1",
+                      height: screenSize.height < 800 ? 100 : 200,
+                      fit: BoxFit.contain,
                     )
                   ],
                 ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pizzaria/src/screens/home/constants/home.dart';
 import 'package:pizzaria/src/screens/menu/menu_screen.dart';
+import 'package:pizzaria/src/screens/offers/offers_screen.dart';
 import 'package:pizzaria/src/themes/colors/color_schemes.g.dart';
 import 'package:pizzaria/src/widgets/appbar_custom.dart';
 
@@ -22,9 +23,9 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ),
-        body: TabBarView(
+        body: const TabBarView(
           children: [
-            Text("data"),
+            OffersScreen(),
             MenuScreen(),
           ],
         ),
