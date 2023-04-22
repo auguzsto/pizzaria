@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pizzaria/src/themes/colors/color_schemes.g.dart';
 
 ThemeData get lightColorTheme => ThemeData(
@@ -15,6 +16,17 @@ ThemeData get lightColorTheme => ThemeData(
         overlayColor: MaterialStateColor.resolveWith(
           (states) => lightColorScheme.error,
         ),
+      ),
+      textTheme: TextTheme(
+        displayLarge: GoogleFonts.roboto(),
+        displayMedium: GoogleFonts.roboto(),
+        displaySmall: GoogleFonts.roboto(),
+        titleLarge: GoogleFonts.roboto(),
+        titleMedium: GoogleFonts.roboto(),
+        titleSmall: GoogleFonts.roboto(),
+        bodyLarge: GoogleFonts.roboto(),
+        bodyMedium: GoogleFonts.roboto(),
+        bodySmall: GoogleFonts.roboto(),
       ),
     );
 

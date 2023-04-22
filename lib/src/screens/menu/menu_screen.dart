@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:pizzaria/src/controllers/menu_controller.dart';
 import 'package:pizzaria/src/models/item_model.dart';
-import 'package:pizzaria/src/screens/menu/constants/menu.dart';
 import 'package:pizzaria/src/services/util_service.dart';
-import 'package:pizzaria/src/themes/colors/color_schemes.g.dart';
-import 'package:pizzaria/src/themes/themes.dart';
 import 'package:pizzaria/src/widgets/card_custom.dart';
 import 'package:pizzaria/src/widgets/progress_custom.dart';
 

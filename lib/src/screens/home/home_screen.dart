@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:pizzaria/src/screens/home/constants/home.dart';
 import 'package:pizzaria/src/screens/menu/menu_screen.dart';
 import 'package:pizzaria/src/screens/offers/offers_screen.dart';
-import 'package:pizzaria/src/themes/colors/color_schemes.g.dart';
+import 'package:pizzaria/src/screens/orders/orders_screen.dart';
 import 'package:pizzaria/src/widgets/appbar_custom.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -12,7 +11,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
           title: const AppBarCustom(),
@@ -27,6 +26,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             OffersScreen(),
             MenuScreen(),
+            OrdersScreen(),
           ],
         ),
       ),

@@ -13,6 +13,12 @@ List<Widget> _tabBar = [
       Text("Cardápio"),
     ],
   ),
+  Column(
+    children: const [
+      Icon(Icons.view_list),
+      Text("Pedidos"),
+    ],
+  ),
 ];
 
 abstract class Home {
