@@ -5,6 +5,7 @@ import 'package:pizzaria/src/controllers/order_controller.dart';
 import 'package:pizzaria/src/models/item_model.dart';
 import 'package:pizzaria/src/models/order_model.dart';
 import 'package:pizzaria/src/models/user_model.dart';
+import 'package:pizzaria/src/services/util_service.dart';
 import 'package:pizzaria/src/widgets/progress_custom.dart';
 
 class OrdersScreen extends StatelessWidget {
@@ -14,6 +15,8 @@ class OrdersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final orderController = OrderController();
     final userModel = Get.find<UserModel>(tag: "user");
+    final utilService = UtilService();
+
     return FutureBuilder(
       future: orderController.getByUserId(userModel),
       builder: (context, snapshot) {
@@ -57,6 +60,7 @@ class OrdersScreen extends StatelessWidget {
 
                   return ListTile(
                     title: Text(orderModel.id!),
+                    trailing: Text(utilService.convertToBRL(orderModel.total!)),
                   );
                 },
               ),
