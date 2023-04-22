@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pizzaria/src/constants/app.dart';
 import 'package:pizzaria/src/controllers/order_controller.dart';
+import 'package:pizzaria/src/models/item_model.dart';
 import 'package:pizzaria/src/models/order_model.dart';
 import 'package:pizzaria/src/models/user_model.dart';
 import 'package:pizzaria/src/widgets/progress_custom.dart';
@@ -49,7 +50,7 @@ class OrdersScreen extends StatelessWidget {
               child: ListView.builder(
                 itemCount: snapshot.data!.length,
                 itemBuilder: (context, index) {
-                  print(snapshot.data!);
+                  print(snapshot.data![index]);
 
                   final orderModel =
                       OrderModel.fromMap(snapshot.data?[index] ?? {});
