@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pizzaria/src/controllers/auth_controller.dart';
 import 'package:pizzaria/src/controllers/menu_controller.dart';
 import 'package:pizzaria/src/models/item_model.dart';
 import 'package:pizzaria/src/services/util_service.dart';

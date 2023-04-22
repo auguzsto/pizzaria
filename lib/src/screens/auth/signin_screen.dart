@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pizzaria/src/controllers/auth_controller.dart';
 import 'package:pizzaria/src/screens/auth/constants/signin.dart';
+import 'package:pizzaria/src/widgets/progress_custom.dart';
 
 class SignInScreen extends StatelessWidget {
   SignInScreen({super.key});
@@ -21,7 +23,7 @@ class SignInScreen extends StatelessWidget {
 
       //Body
       body: Container(
-        padding: EdgeInsets.all(32),
+        padding: const EdgeInsets.all(32),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -48,15 +50,22 @@ class SignInScreen extends StatelessWidget {
                 },
               ),
             ),
-            ElevatedButton.icon(
-              onPressed: () async {
-                await authController.signIn(
-                  controllers[0].text,
-                  controllers[1].text,
-                );
-              },
-              icon: const Icon(Icons.login),
-              label: const Text("Acessar"),
+            Obx(
+              () => !authController.isLoading.value
+                  ? ElevatedButton.icon(
+                      onPressed: () async {
+                        await authController.signIn(
+                          controllers[0].text,
+                          controllers[1].text,
+                          context,
+                        );
+                      },
+                      icon: const Icon(Icons.login),
+                      label: const Text("Acessar"),
+                    )
+                  : const Center(
+                      child: ProgressCustom(),
+                    ),
             )
           ],
         ),

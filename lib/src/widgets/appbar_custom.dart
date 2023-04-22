@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pizzaria/src/controllers/auth_controller.dart';
 import 'package:pizzaria/src/models/user_model.dart';
 import 'package:pizzaria/src/screens/auth/signin_screen.dart';
 
@@ -43,12 +44,15 @@ class Avatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userModel = Get.find<UserModel>(tag: "user");
     return CircleAvatar(
       child: IconButton(
         onPressed: () {
           Get.to(SignInScreen());
         },
-        icon: const Text('T'),
+        icon: userModel.username != null
+            ? Text(userModel.username![0])
+            : const Icon(Icons.person),
       ),
     );
   }

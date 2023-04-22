@@ -15,7 +15,7 @@ class AppWidget extends StatelessWidget {
       theme: lightColorTheme,
       darkTheme: darkColorTheme,
       home: const HomeScreen(),
-      onInit: () => Get.lazyPut(() => UserModel(), fenix: true),
+      onInit: () => Get.put<UserModel>(UserModel(), tag: "user"),
     );
   }
 }
