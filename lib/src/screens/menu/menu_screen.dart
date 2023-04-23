@@ -30,7 +30,7 @@ class MenuScreen extends StatelessWidget {
         //Grid
         return GridView.count(
           shrinkWrap: false,
-          crossAxisCount: screenSize.height < 800 ? 2 : 4,
+          crossAxisCount: screenSize.width < 800 ? 2 : 4,
           children: List.generate(
             snapshot.data!.length,
             (index) {
