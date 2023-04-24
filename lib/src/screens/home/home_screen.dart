@@ -12,7 +12,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(Get.find<UserModel>(tag: "user").toJson());
     return DefaultTabController(
       length: 3,
       child: Scaffold(
