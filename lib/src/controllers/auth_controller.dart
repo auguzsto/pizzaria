@@ -17,7 +17,7 @@ class AuthController extends GetxController {
         if (value != null) {
           Get.find<UserModel>(tag: "user").obs.update((user) {
             user!.id = value['id'];
-            user.username = value['username'];
+            user.email = value['email'];
             user.vendor = value['vendor'];
             user.basicToken = value['basicToken'];
           });

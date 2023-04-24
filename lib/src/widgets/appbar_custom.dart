@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:pizzaria/src/controllers/auth_controller.dart';
 import 'package:pizzaria/src/models/user_model.dart';
 import 'package:pizzaria/src/screens/auth/signin_screen.dart';
+import 'package:pizzaria/src/themes/colors/color_schemes.g.dart';
 
 class AppBarCustom extends StatelessWidget {
   AppBarCustom({super.key});
@@ -48,9 +49,9 @@ class Avatar extends StatelessWidget {
     return CircleAvatar(
       child: IconButton(
         onPressed:
-            userModel.username != null ? () {} : () => Get.to(SignInScreen()),
-        icon: userModel.username != null
-            ? Text(userModel.username![0])
+            userModel.email != null ? () {} : () => showScreenLogin(context),
+        icon: userModel.email != null
+            ? Text(userModel.email![0])
             : const Icon(Icons.person),
       ),
     );
@@ -71,4 +72,23 @@ class Cart extends StatelessWidget {
       ),
     );
   }
+}
+
+Future showScreenLogin(BuildContext context) {
+  return showDialog(
+    context: context,
+    builder: (context) => Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(32),
+          decoration: BoxDecoration(
+              color: lightColorScheme.onTertiary,
+              borderRadius: BorderRadius.circular(8)),
+          child: SignInScreen(),
+        )
+      ],
+    ),
+  );
 }

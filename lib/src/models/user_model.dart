@@ -1,12 +1,12 @@
 class UserModel {
   String? id;
-  String? username;
+  String? email;
   int? vendor;
   String? basicToken;
 
   UserModel({
     this.id,
-    this.username,
+    this.email,
     this.vendor,
     this.basicToken,
   });
@@ -14,7 +14,7 @@ class UserModel {
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
       id: map['id'],
-      username: map['username'],
+      email: map['email'],
       vendor: map['vendor'],
       basicToken: map['basicToken'],
     );
@@ -23,7 +23,7 @@ class UserModel {
   Map<String, dynamic> toJson() {
     return {
       "id": id,
-      "username": username,
+      "email": email,
       "vendor": vendor,
       "basicToken": basicToken,
     };

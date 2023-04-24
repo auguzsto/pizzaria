@@ -10,7 +10,7 @@ class AuthRepository {
     return await client.post(
       table: "auth",
       body: {
-        "username": username,
+        "email": username,
         "password": password,
       },
     );
