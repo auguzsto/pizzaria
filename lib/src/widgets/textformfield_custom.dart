@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class TextFormFieldCustom extends StatelessWidget {
+  String? Function(String?)? validator;
   final Widget prefixIcon;
   final Widget label;
   final bool obscureText;
   final TextEditingController controller;
 
-  const TextFormFieldCustom({
+  TextFormFieldCustom({
     super.key,
+    this.validator,
     required this.prefixIcon,
     required this.label,
     required this.obscureText,
@@ -17,6 +19,7 @@ class TextFormFieldCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: validator,
       controller: controller,
       obscureText: obscureText,
       decoration: InputDecoration(

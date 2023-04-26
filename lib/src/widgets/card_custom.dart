@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pizzaria/src/constants/app.dart';
 import 'package:pizzaria/src/models/item_model.dart';
+import 'package:pizzaria/src/models/user_model.dart';
 import 'package:pizzaria/src/screens/menu/constants/menu.dart';
 import 'package:pizzaria/src/services/util_service.dart';
 import 'package:pizzaria/src/themes/colors/color_schemes.g.dart';
+import 'package:get/get.dart';
+import 'package:pizzaria/src/widgets/alert_signin_custom.dart';
+import 'package:pizzaria/src/widgets/alert_warning_custom.dart';
 
 class CardCustom extends StatelessWidget {
   final ItemModel itemModel;
@@ -17,6 +22,7 @@ class CardCustom extends StatelessWidget {
   Widget build(BuildContext context) {
     final utilService = UtilService();
     final screenSize = MediaQuery.of(context).size;
+    final userModel = Get.find<UserModel>(tag: "user");
     return Card(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -90,7 +96,17 @@ class CardCustom extends StatelessWidget {
             ),
             child: Center(
               child: IconButton(
-                onPressed: () {},
+                onPressed: () async {
+                  if (userModel.basicToken == null) {
+                    showDialog(
+                      context: context,
+                      builder: (context) => const Padding(
+                        padding: EdgeInsets.all(18),
+                        child: AlertSignInCustom(),
+                      ),
+                    );
+                  }
+                },
                 icon: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

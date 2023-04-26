@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:pizzaria/src/controllers/auth_controller.dart';
 import 'package:pizzaria/src/controllers/menu_controller.dart';
 import 'package:pizzaria/src/models/item_model.dart';
-import 'package:pizzaria/src/services/util_service.dart';
 import 'package:pizzaria/src/widgets/card_custom.dart';
 import 'package:pizzaria/src/widgets/progress_custom.dart';
 
@@ -13,7 +12,7 @@ class MenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final menuController = CarteController();
-    final utilService = UtilService();
+
     final screenSize = MediaQuery.of(context).size;
 
     //Future

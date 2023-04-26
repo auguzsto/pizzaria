@@ -32,7 +32,10 @@ class OrdersScreen extends StatelessWidget {
 
           //If user don't authorized or logged.
         } else if (snapshot.data![0] == AppConsntats.naoAutorizado) {
-          return const AlertWarningCustom();
+          return AlertWarningCustom(
+            title: AppConsntats.naoAutorizado,
+            message: AppConsntats.msgEfetuarLogin,
+          );
         }
 
         //Card order.

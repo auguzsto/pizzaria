@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:pizzaria/src/constants/app.dart';
 
 class AlertWarningCustom extends StatelessWidget {
-  const AlertWarningCustom({super.key});
+  final String title;
+  final String message;
+  const AlertWarningCustom({
+    super.key,
+    required this.title,
+    required this.message,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +24,10 @@ class AlertWarningCustom extends StatelessWidget {
             ),
           ),
           Text(
-            AppConsntats.naoAutorizado,
+            title,
             style: const TextStyle(fontSize: 32),
           ),
-          Text(AppConsntats.msgEfetuarLogin),
+          Text(message),
         ],
       ),
     );
