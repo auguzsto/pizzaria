@@ -1,8 +1,6 @@
 import 'dart:convert';
-import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:pizzaria/src/constants/app.dart';
-import 'package:pizzaria/src/models/user_model.dart';
+import 'package:pizzaria/src/common/constants/app.dart';
 
 abstract class IHttpClient {
   Future<List> get(
