@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pizzaria/src/common/controllers/menu_controller.dart';
 import 'package:pizzaria/src/common/models/item_model.dart';
-import 'package:pizzaria/src/common/widgets/card_custom.dart';
-import 'package:pizzaria/src/common/widgets/progress_custom.dart';
+import 'package:pizzaria/src/widgets/card_custom.dart';
+import 'package:pizzaria/src/widgets/progress_custom.dart';
 
 class MenuScreen extends StatelessWidget {
   const MenuScreen({super.key});

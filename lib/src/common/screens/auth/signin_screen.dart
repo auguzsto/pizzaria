@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:pizzaria/src/common/controllers/auth_controller.dart';
 import 'package:pizzaria/src/common/screens/auth/constants/signin.dart';
 import 'package:pizzaria/src/common/themes/colors/color_schemes.g.dart';
-import 'package:pizzaria/src/common/widgets/progress_custom.dart';
-import 'package:pizzaria/src/common/widgets/textformfield_custom.dart';
+import 'package:pizzaria/src/widgets/progress_custom.dart';
+import 'package:pizzaria/src/widgets/textformfield_custom.dart';
 import 'package:pizzaria/src/services/util_service.dart';
 
 class SignInScreen extends StatelessWidget {

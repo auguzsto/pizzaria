@@ -3,7 +3,7 @@ import 'package:pizzaria/src/common/screens/home/constants/home.dart';
 import 'package:pizzaria/src/common/screens/menu/menu_screen.dart';
 import 'package:pizzaria/src/common/screens/offers/offers_screen.dart';
 import 'package:pizzaria/src/common/screens/orders/orders_screen.dart';
-import 'package:pizzaria/src/common/widgets/appbar_custom.dart';
+import 'package:pizzaria/src/widgets/appbar_custom.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

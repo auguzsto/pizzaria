@@ -7,8 +7,8 @@ import 'package:pizzaria/src/common/models/order_model.dart';
 import 'package:pizzaria/src/common/models/user_model.dart';
 import 'package:pizzaria/src/common/screens/orders/widget/order_card_custom.dart';
 import 'package:pizzaria/src/services/util_service.dart';
-import 'package:pizzaria/src/common/widgets/alert_warning_custom.dart';
-import 'package:pizzaria/src/common/widgets/progress_custom.dart';
+import 'package:pizzaria/src/widgets/alert_warning_custom.dart';
+import 'package:pizzaria/src/widgets/progress_custom.dart';
 
 class OrdersScreen extends StatelessWidget {
   const OrdersScreen({super.key});
