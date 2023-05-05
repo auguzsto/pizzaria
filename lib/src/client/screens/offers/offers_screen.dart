@@ -15,13 +15,13 @@ class OffersScreen extends StatefulWidget {
 class _OffersScreenState extends State<OffersScreen> {
   @override
   Widget build(BuildContext context) {
-    final menuController = ItemController();
+    final itemController = ItemController();
     final utilService = UtilService();
     final screenSize = MediaQuery.of(context).size;
 
     //Future
     return FutureBuilder(
-      future: menuController.get(),
+      future: itemController.get(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const ProgressCustom(
@@ -33,11 +33,15 @@ class _OffersScreenState extends State<OffersScreen> {
         //Grid
         return GridView.count(
           shrinkWrap: false,
-          crossAxisCount: screenSize.height < 800 ? 2 : 4,
+          crossAxisCount: screenSize.width < 800 ? 2 : 4,
           children: List.generate(
             snapshot.data!.length,
             (index) {
-              final itemModel = ItemModel.fromMap(snapshot.data![index] ?? {});
+              final itemModel = ItemModel.fromMap(snapshot.data?[index] ?? {});
+
+              if (itemModel.priceOffer?.sign == null) {
+                return const Center();
+              }
 
               if (itemModel.priceOffer! > 1) {
                 //Card

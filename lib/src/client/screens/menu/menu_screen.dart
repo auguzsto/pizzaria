@@ -27,14 +27,16 @@ class MenuScreen extends StatelessWidget {
         //Grid
         return GridView.count(
           shrinkWrap: false,
-          crossAxisCount: screenSize.width < 800 ? 2 : 4,
+          crossAxisCount: screenSize.width < 800 ? 2 : 6,
           children: List.generate(
             snapshot.data!.length,
             (index) {
               final itemModel = ItemModel.fromMap(snapshot.data?[index] ?? {});
 
               //Card
-              return CardCustom(itemModel: itemModel);
+              return SizedBox(
+                child: CardCustom(itemModel: itemModel),
+              );
             },
           ),
         );
