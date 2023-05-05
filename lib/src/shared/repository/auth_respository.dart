@@ -1,5 +1,4 @@
 import 'package:pizzaria/src/services/http_client.dart';
-import 'package:pizzaria/src/shared/constants/app.dart';
 
 class AuthRepository {
   final client = HttpClient();

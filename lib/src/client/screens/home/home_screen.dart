@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title: AppBarCustom(),
+          title: const AppBarCustom(),
           bottom: TabBar(
             tabs: List.generate(
               Home.tabBar.length,

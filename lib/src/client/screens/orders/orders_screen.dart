@@ -6,7 +6,6 @@ import 'package:pizzaria/src/shared/models/item_model.dart';
 import 'package:pizzaria/src/shared/models/order_model.dart';
 import 'package:pizzaria/src/shared/models/user_model.dart';
 import 'package:pizzaria/src/client/screens/orders/widget/order_card_custom.dart';
-import 'package:pizzaria/src/services/util_service.dart';
 import 'package:pizzaria/src/widgets/alert_warning_custom.dart';
 import 'package:pizzaria/src/widgets/progress_custom.dart';
 
@@ -17,7 +16,6 @@ class OrdersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final orderController = OrderController();
     final userModel = Get.find<UserModel>(tag: "user");
-    final utilService = UtilService();
 
     return FutureBuilder(
       future: orderController.getByUserId(userModel),

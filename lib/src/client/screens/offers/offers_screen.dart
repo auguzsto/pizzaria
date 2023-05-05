@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pizzaria/src/shared/controllers/item_controller.dart';
 import 'package:pizzaria/src/shared/models/item_model.dart';
-import 'package:pizzaria/src/services/util_service.dart';
 import 'package:pizzaria/src/widgets/card_custom.dart';
 import 'package:pizzaria/src/widgets/progress_custom.dart';
 
@@ -16,7 +15,6 @@ class _OffersScreenState extends State<OffersScreen> {
   @override
   Widget build(BuildContext context) {
     final itemController = ItemController();
-    final utilService = UtilService();
     final screenSize = MediaQuery.of(context).size;
 
     //Future

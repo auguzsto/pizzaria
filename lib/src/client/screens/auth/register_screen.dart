@@ -35,6 +35,8 @@ class RegisterScreen extends StatelessWidget {
                             if (value == null || value.isEmpty) {
                               return "Campo obrigatório";
                             }
+
+                            return null;
                           },
                           prefixIcon: Icon(RegisterConstants.icons[index]),
                           label: Text(RegisterConstants.labels[index]),
@@ -55,7 +57,7 @@ class RegisterScreen extends StatelessWidget {
                 onPressed: () {
                   List.generate(RegisterConstants.labels.length, (index) {
                     if (_formKey[index].currentState!.validate()) {
-                      Text("Data");
+                      const Text("Data");
                     }
                   });
                 },

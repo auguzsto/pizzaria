@@ -5,16 +5,16 @@ import 'package:pizzaria/src/client/screens/auth/signin_screen.dart';
 import 'package:pizzaria/src/shared/themes/colors/color_schemes.g.dart';
 
 class AppBarCustom extends StatelessWidget {
-  AppBarCustom({super.key});
+  const AppBarCustom({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
+      children: const [
         Avatar(),
-        const Logo(),
-        const Cart(),
+        Logo(),
+        Cart(),
       ],
     );
   }
@@ -40,7 +40,7 @@ class Logo extends StatelessWidget {
 
 //Avatar
 class Avatar extends StatelessWidget {
-  Avatar({super.key});
+  const Avatar({super.key});
 
   @override
   Widget build(BuildContext context) {

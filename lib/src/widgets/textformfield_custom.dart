@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class TextFormFieldCustom extends StatelessWidget {
-  String? Function(String?)? validator;
+  final String? Function(String?)? validator;
   final Widget prefixIcon;
   final Widget label;
   final bool obscureText;
   final TextEditingController controller;
-  List<TextInputFormatter>? inputFormatters;
-  void Function(String)? onChanged;
+  final List<TextInputFormatter>? inputFormatters;
+  final void Function(String)? onChanged;
 
-  TextFormFieldCustom({
+  const TextFormFieldCustom({
     super.key,
     this.validator,
     required this.prefixIcon,
