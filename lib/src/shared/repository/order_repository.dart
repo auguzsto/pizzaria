@@ -12,7 +12,7 @@ class OrderRepository {
     return await client.get(
       table: "pedido",
       column: "idUser=${userModel?.id}",
-      authorization: {
+      headers: {
         "Authorization": "Basic ${userModel!.basicToken}",
       },
     );

@@ -30,10 +30,25 @@ class ItemAdminScreen extends StatelessWidget {
           return ListView.separated(
               itemBuilder: (context, index) {
                 //Constructor item model.
-                final itemModel = ItemModel.fromMap(snapshot.data?[0] ?? {});
+                final itemModel =
+                    ItemModel.fromMap(snapshot.data?[index] ?? {});
 
                 return ListTile(
                   title: Text(itemModel.name!),
+                  subtitle: Text(
+                      itemModel.description ?? "Não há descrição neste item"),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      //Delete
+                      IconButton(
+                        onPressed: () async {
+                          await itemController.delete(itemModel.id!);
+                        },
+                        icon: const Icon(Icons.delete),
+                      )
+                    ],
+                  ),
                 );
               },
               separatorBuilder: (context, index) => const Divider(),
@@ -49,7 +64,7 @@ class ItemAdminScreen extends StatelessWidget {
             builder: (context) => Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Material(
                   child: AddItemWindow(),
                 ),

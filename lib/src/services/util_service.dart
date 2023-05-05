@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class UtilService {
   String doubleToString(double value) {
@@ -34,5 +36,13 @@ class UtilService {
     } else {
       return width / heightFull;
     }
+  }
+
+  TextInputFormatter maskText(String value) {
+    return MaskTextInputFormatter(
+      mask: "##.##",
+      filter: {"#": RegExp(r'[0-9]')},
+      type: MaskAutoCompletionType.lazy,
+    );
   }
 }

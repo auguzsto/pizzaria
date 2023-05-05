@@ -1,32 +1,42 @@
 import 'dart:convert';
+import 'dart:ffi';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:pizzaria/src/shared/constants/app.dart';
+import 'package:pizzaria/src/shared/models/user_model.dart';
 
 abstract class IHttpClient {
   Future<List> get(
-      {required String table,
-      String? column,
-      Map<String, String>? authorization});
+      {required String table, String? column, Map<String, String>? headers});
   Future post({required String table, required Object body, String? column});
-  Future<void> delete();
+  Future<void> delete(
+      {required String table,
+      required String id,
+      required Map<String, String>? headers});
 }
 
 class HttpClient implements IHttpClient {
   String baseUrl = "http://localhost:8080";
 
   @override
-  Future<void> delete() {
-    throw UnimplementedError();
+  Future<void> delete(
+      {required String table,
+      required String id,
+      required Map<String, String>? headers}) async {
+    await http.delete(
+      Uri.parse("$baseUrl/$table/$id"),
+      headers: headers,
+    );
   }
 
   @override
   Future<List> get(
       {required String table,
       String? column,
-      Map<String, String>? authorization}) async {
+      Map<String, String>? headers}) async {
     final response = await http.get(
       Uri.parse("$baseUrl/$table?$column"),
-      headers: authorization,
+      headers: headers,
     );
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
@@ -37,15 +47,19 @@ class HttpClient implements IHttpClient {
   }
 
   @override
-  Future post({required String table, Object? body, String? column}) async {
+  Future post(
+      {required String table,
+      Object? body,
+      String? column,
+      Map<String, String>? headers}) async {
     final response = await http.post(
       Uri.parse("$baseUrl/$table?$column"),
       body: jsonEncode(body),
-      headers: AppConsntats.headerContentType,
+      headers: headers,
     );
 
     if (response.statusCode == 200) {
-      return jsonDecode(response.body);
+      return jsonDecode(response.body.isNotEmpty ? response.body : "{}");
     } else if (response.statusCode == 401) {
       print("Não autorizado");
     }
