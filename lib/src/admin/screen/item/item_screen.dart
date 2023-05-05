@@ -1,0 +1,64 @@
+import 'package:flutter/material.dart';
+import 'package:pizzaria/src/admin/screen/item/widgets/additem.dart';
+import 'package:pizzaria/src/shared/controllers/item_controller.dart';
+import 'package:pizzaria/src/shared/models/item_model.dart';
+import 'package:pizzaria/src/shared/themes/colors/color_schemes.g.dart';
+import 'package:pizzaria/src/widgets/progress_custom.dart';
+
+class ItemAdminScreen extends StatelessWidget {
+  const ItemAdminScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final itemController = ItemController();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Gerenciamento de itens"),
+      ),
+      body: FutureBuilder(
+        future: itemController.get(),
+        builder: (context, snapshot) {
+          //Progress data.
+          if (!snapshot.hasData) {
+            return const ProgressCustom(
+              height: 25,
+              width: 25,
+            );
+          }
+
+          //List items
+          return ListView.separated(
+              itemBuilder: (context, index) {
+                //Constructor item model.
+                final itemModel = ItemModel.fromMap(snapshot.data?[0] ?? {});
+
+                return ListTile(
+                  title: Text(itemModel.name!),
+                );
+              },
+              separatorBuilder: (context, index) => const Divider(),
+              itemCount: snapshot.data?.length ?? 0);
+        },
+      ),
+
+      //Add items
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (context) => Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Material(
+                  child: AddItemWindow(),
+                ),
+              ],
+            ),
+          );
+        },
+        label: const Text("Adicionar"),
+      ),
+    );
+  }
+}
