@@ -26,6 +26,7 @@ class AddItemWindow extends StatelessWidget {
 
   final controllers =
       List.generate(_labels.length, (index) => TextEditingController());
+
   final itemController = ItemController();
 
   @override

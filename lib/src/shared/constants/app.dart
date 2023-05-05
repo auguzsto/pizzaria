@@ -9,7 +9,7 @@ const Map<String, String> _headerContentType = {
   "Content-Type": "application/json",
 };
 
-abstract class AppConsntats {
+abstract class AppConstants {
   static String get naoAutorizado => _naoAutorizado;
   static String get msgEfetuarLogin => _msgEfetuarLogin;
   static IconData get error => _error;

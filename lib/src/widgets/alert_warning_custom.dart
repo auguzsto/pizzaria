@@ -19,7 +19,7 @@ class AlertWarningCustom extends StatelessWidget {
           CircleAvatar(
             maxRadius: 148,
             child: Icon(
-              AppConsntats.warning,
+              AppConstants.warning,
               size: 138,
             ),
           ),

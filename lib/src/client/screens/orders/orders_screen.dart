@@ -30,10 +30,10 @@ class OrdersScreen extends StatelessWidget {
           );
 
           //If user don't authorized or logged.
-        } else if (snapshot.data![0] == AppConsntats.naoAutorizado) {
+        } else if (snapshot.data?[0] == AppConstants.naoAutorizado) {
           return AlertWarningCustom(
-            title: AppConsntats.naoAutorizado,
-            message: AppConsntats.msgEfetuarLogin,
+            title: AppConstants.naoAutorizado,
+            message: AppConstants.msgEfetuarLogin,
           );
         }
 

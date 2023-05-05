@@ -30,7 +30,7 @@ class ItemRepository {
   }
 
   Future<void> delete(String id) async {
-    return client.delete(
+    return await client.delete(
       table: 'item',
       id: id,
       headers: {

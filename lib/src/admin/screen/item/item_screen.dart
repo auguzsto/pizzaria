@@ -2,15 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:pizzaria/src/admin/screen/item/widgets/additem.dart';
 import 'package:pizzaria/src/shared/controllers/item_controller.dart';
 import 'package:pizzaria/src/shared/models/item_model.dart';
-import 'package:pizzaria/src/shared/themes/colors/color_schemes.g.dart';
 import 'package:pizzaria/src/widgets/progress_custom.dart';
 
-class ItemAdminScreen extends StatelessWidget {
+class ItemAdminScreen extends StatefulWidget {
   const ItemAdminScreen({super.key});
 
   @override
+  State<ItemAdminScreen> createState() => _ItemAdminScreenState();
+}
+
+final itemController = ItemController();
+
+class _ItemAdminScreenState extends State<ItemAdminScreen> {
+  @override
+  void initState() {
+    itemController.addListener(() => setState(() {}));
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    itemController;
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final itemController = ItemController();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Gerenciamento de itens"),
