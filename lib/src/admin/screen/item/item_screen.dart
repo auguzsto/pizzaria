@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pizzaria/src/admin/screen/item/widgets/additem.dart';
+import 'package:pizzaria/src/services/util_service.dart';
 import 'package:pizzaria/src/shared/controllers/item_controller.dart';
 import 'package:pizzaria/src/shared/models/item_model.dart';
+import 'package:pizzaria/src/shared/themes/colors/color_schemes.g.dart';
 import 'package:pizzaria/src/widgets/progress_custom.dart';
 
 class ItemAdminScreen extends StatefulWidget {
@@ -12,6 +14,7 @@ class ItemAdminScreen extends StatefulWidget {
 }
 
 final itemController = ItemController();
+final utilService = UtilService();
 
 class _ItemAdminScreenState extends State<ItemAdminScreen> {
   @override
@@ -57,12 +60,22 @@ class _ItemAdminScreenState extends State<ItemAdminScreen> {
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      //Price
+                      IconButton(
+                        onPressed: () {},
+                        icon: Text(
+                          utilService.convertToBRL(itemModel.price!),
+                        ),
+                      ),
                       //Delete
                       IconButton(
                         onPressed: () async {
                           await itemController.delete(itemModel.id!);
                         },
-                        icon: const Icon(Icons.delete),
+                        icon: Icon(
+                          Icons.delete,
+                          color: lightColorScheme.error,
+                        ),
                       )
                     ],
                   ),
