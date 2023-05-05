@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 List<String> _labels = [
   "Financeiro",
-  "Pedidos",
+  "Relatórios",
   "Clientes",
   "Itens",
 ];
 
 List<String> _description = [
   "Acompanhe suas finanças",
-  "Acompanhe seus pedidos",
+  "Acompanhe com relatórios",
   "Gerencie seus clientes",
   "Gerencie seus itens",
 ];

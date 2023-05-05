@@ -1,6 +1,6 @@
 import 'package:pizzaria/src/services/http_client.dart';
 
-class MenuRepository {
+class ItemRepository {
   final client = HttpClient();
 
   Future<List> get() async {
@@ -8,6 +8,6 @@ class MenuRepository {
   }
 
   Future<List> getById({required String id}) async {
-    return await client.get(table: "item?", column: "id=$id");
+    return await client.get(table: "item", column: "id=$id");
   }
 }

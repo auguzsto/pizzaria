@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pizzaria/src/common/models/user_model.dart';
-import 'package:pizzaria/src/common/screens/auth/signin_screen.dart';
-import 'package:pizzaria/src/common/themes/colors/color_schemes.g.dart';
+import 'package:pizzaria/src/shared/models/user_model.dart';
+import 'package:pizzaria/src/client/screens/auth/signin_screen.dart';
+import 'package:pizzaria/src/shared/themes/colors/color_schemes.g.dart';
 
 class AppBarCustom extends StatelessWidget {
   AppBarCustom({super.key});

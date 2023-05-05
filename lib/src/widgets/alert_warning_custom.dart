@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pizzaria/src/common/constants/app.dart';
+import 'package:pizzaria/src/shared/constants/app.dart';
 
 class AlertWarningCustom extends StatelessWidget {
   final String title;
