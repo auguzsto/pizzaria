@@ -45,15 +45,14 @@ class Avatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userModel = Get.find<UserModel>(tag: "user");
-    return CircleAvatar(
-      child: IconButton(
-        onPressed:
-            userModel.email != null ? () {} : () => showScreenLogin(context),
-        icon: userModel.email != null
-            ? Text(userModel.email![0])
-            : const Icon(Icons.person),
-      ),
-    );
+    return userModel.email != null
+        ? const SizedBox()
+        : CircleAvatar(
+            child: IconButton(
+              onPressed: () => showScreenLogin(context),
+              icon: const Icon(Icons.person),
+            ),
+          );
   }
 }
 

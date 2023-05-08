@@ -27,10 +27,20 @@ class AuthController extends GetxController {
             return Get.offAll(const HomeAdminScreen());
           }
 
-          Get.offAll(const HomeScreen());
+          Get.offAll(HomeScreen());
         }
         isLoading.value = false;
       },
     );
+  }
+
+  Future<void> signOut() async {
+    UserModel userModel = Get.find<UserModel>(tag: "user");
+    userModel.id = null;
+    userModel.email = null;
+    userModel.vendor = null;
+    userModel.basicToken = null;
+    userModel.obs.refresh();
+    Get.offAll(HomeScreen());
   }
 }

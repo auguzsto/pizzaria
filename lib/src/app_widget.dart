@@ -14,7 +14,7 @@ class AppWidget extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: lightColorTheme,
       darkTheme: darkColorTheme,
-      home: const HomeScreen(),
+      home: HomeScreen(),
       onInit: () => Get.put<UserModel>(UserModel(), tag: "user"),
     );
   }

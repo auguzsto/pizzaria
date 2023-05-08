@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:pizzaria/src/admin/screen/home/constants/home_admin.dart';
 import 'package:pizzaria/src/admin/screen/item/item_screen.dart';
 import 'package:pizzaria/src/client/screens/home/home_screen.dart';
+import 'package:pizzaria/src/shared/controllers/auth_controller.dart';
 import 'package:pizzaria/src/shared/models/user_model.dart';
 import 'package:pizzaria/src/shared/themes/colors/color_schemes.g.dart';
 import 'package:pizzaria/src/services/util_service.dart';
@@ -13,6 +14,7 @@ class HomeAdminScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final utilService = UtilService();
+    final authController = AuthController();
     return Scaffold(
       //Appbar
       appBar: AppBar(
@@ -24,9 +26,7 @@ class HomeAdminScreen extends StatelessWidget {
             ),
             IconButton(
               onPressed: () async {
-                UserModel userModel = Get.find<UserModel>(tag: "user");
-                userModel.obs.refresh();
-                Get.offAll(const HomeScreen());
+                authController.signOut();
               },
               icon: const Icon(
                 Icons.logout,
