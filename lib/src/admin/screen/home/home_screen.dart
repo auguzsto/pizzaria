@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pizzaria/src/admin/screen/home/constants/home_admin.dart';
 import 'package:pizzaria/src/admin/screen/item/item_screen.dart';
+import 'package:pizzaria/src/client/screens/home/home_screen.dart';
+import 'package:pizzaria/src/shared/models/user_model.dart';
 import 'package:pizzaria/src/shared/themes/colors/color_schemes.g.dart';
 import 'package:pizzaria/src/services/util_service.dart';
 
@@ -21,7 +23,11 @@ class HomeAdminScreen extends StatelessWidget {
               "Painel administrativo",
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () async {
+                UserModel userModel = Get.find<UserModel>(tag: "user");
+                userModel.obs.refresh();
+                Get.offAll(const HomeScreen());
+              },
               icon: const Icon(
                 Icons.logout,
               ),

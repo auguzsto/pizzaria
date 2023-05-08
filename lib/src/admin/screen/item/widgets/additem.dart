@@ -59,7 +59,7 @@ class AddItemWindow extends StatelessWidget {
                   key: _formsKey[index],
                   child: TextFormFieldCustom(
                     validator: (value) {
-                      if (_formsKey[index].currentState!.validate()) {
+                      if (value!.isEmpty) {
                         return "Este campo é obrigatório";
                       }
 
@@ -93,16 +93,20 @@ class AddItemWindow extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
-              onPressed: () async {
-                await itemController.post(
-                  controllers[0].text,
-                  double.parse(controllers[1].text),
-                  double.parse(controllers[2].text),
-                );
+              onPressed: () {
+                List.generate(_formsKey.length, (index) async {
+                  if (_formsKey[index].currentState!.validate()) {
+                    return await itemController.post(
+                      controllers[0].text,
+                      double.parse(controllers[1].text),
+                      double.parse(controllers[2].text),
+                    );
+                  }
+                });
               },
               child: const Text("Confirmar"),
             ),
-          )
+          ),
         ],
       ),
     );
