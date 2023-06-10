@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pizzaria/src/shared/models/user_model.dart';
-import 'package:pizzaria/src/client/screens/auth/signin_screen.dart';
 import 'package:pizzaria/src/shared/themes/colors/color_schemes.g.dart';
+import 'package:pizzaria/src/views/auth/signin_screen.dart';
 
 class AppBarCustom extends StatelessWidget {
   const AppBarCustom({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
+      children: [
         Avatar(),
         Logo(),
         Cart(),
@@ -26,8 +26,8 @@ class Logo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: const [
+    return const Row(
+      children: [
         Icon(Icons.local_pizza),
         SizedBox(
           width: 15,

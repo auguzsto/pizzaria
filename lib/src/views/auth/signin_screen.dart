@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pizzaria/src/shared/controllers/auth_controller.dart';
-import 'package:pizzaria/src/client/screens/auth/constants/signin.dart';
 import 'package:pizzaria/src/shared/themes/colors/color_schemes.g.dart';
+import 'package:pizzaria/src/views/auth/constants/signin.dart';
 import 'package:pizzaria/src/widgets/progress_custom.dart';
 import 'package:pizzaria/src/widgets/textformfield_custom.dart';
-import 'package:pizzaria/src/services/util_service.dart';
+import 'package:pizzaria/src/shared/services/util_service.dart';
 
 class SignInScreen extends StatelessWidget {
   SignInScreen({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pizzaria/src/client/screens/auth/constants/register.dart';
+import 'package:pizzaria/src/views/auth/constants/register.dart';
 import 'package:pizzaria/src/widgets/textformfield_custom.dart';
 
 class RegisterScreen extends StatelessWidget {

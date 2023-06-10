@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pizzaria/src/shared/models/item_model.dart';
 import 'package:pizzaria/src/shared/models/user_model.dart';
-import 'package:pizzaria/src/client/screens/menu/constants/menu.dart';
-import 'package:pizzaria/src/services/util_service.dart';
+import 'package:pizzaria/src/shared/services/util_service.dart';
 import 'package:pizzaria/src/shared/themes/colors/color_schemes.g.dart';
 import 'package:get/get.dart';
+import 'package:pizzaria/src/views/client/menu/constants/menu.dart';
 import 'package:pizzaria/src/widgets/alert_signin_custom.dart';
 
 class CardCustom extends StatelessWidget {

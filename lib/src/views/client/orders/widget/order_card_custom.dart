@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pizzaria/src/shared/models/item_model.dart';
 import 'package:pizzaria/src/shared/models/order_model.dart';
-import 'package:pizzaria/src/services/util_service.dart';
+import 'package:pizzaria/src/shared/services/util_service.dart';
 import 'package:pizzaria/src/shared/themes/colors/color_schemes.g.dart';
 
 class OrderCardCustom extends StatelessWidget {

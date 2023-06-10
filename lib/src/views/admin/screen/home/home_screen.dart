@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pizzaria/src/admin/screen/home/constants/home_admin.dart';
-import 'package:pizzaria/src/admin/screen/item/item_screen.dart';
-import 'package:pizzaria/src/client/screens/home/home_screen.dart';
+import 'package:pizzaria/src/views/admin/screen/home/constants/home_admin.dart';
+import 'package:pizzaria/src/views/admin/screen/item/item_screen.dart';
 import 'package:pizzaria/src/shared/controllers/auth_controller.dart';
-import 'package:pizzaria/src/shared/models/user_model.dart';
 import 'package:pizzaria/src/shared/themes/colors/color_schemes.g.dart';
-import 'package:pizzaria/src/services/util_service.dart';
+import 'package:pizzaria/src/shared/services/util_service.dart';
 
 class HomeAdminScreen extends StatelessWidget {
   const HomeAdminScreen({super.key});

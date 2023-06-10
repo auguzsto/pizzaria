@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pizzaria/src/client/screens/home/constants/home.dart';
-import 'package:pizzaria/src/client/screens/menu/menu_screen.dart';
-import 'package:pizzaria/src/client/screens/offers/offers_screen.dart';
-import 'package:pizzaria/src/client/screens/orders/orders_screen.dart';
+import 'package:pizzaria/src/views/client/home/constants/home.dart';
+import 'package:pizzaria/src/views/client/menu/menu_screen.dart';
+import 'package:pizzaria/src/views/client/offers/offers_screen.dart';
 import 'package:pizzaria/src/shared/controllers/auth_controller.dart';
 import 'package:pizzaria/src/shared/models/user_model.dart';
+import 'package:pizzaria/src/views/client/orders/orders_screen.dart';
 import 'package:pizzaria/src/widgets/appbar_custom.dart';
 
 class HomeScreen extends StatelessWidget {

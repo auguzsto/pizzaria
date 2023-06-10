@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:pizzaria/src/services/http_client.dart';
+import 'package:pizzaria/src/shared/services/http_client.dart';
 import 'package:pizzaria/src/shared/models/user_model.dart';
 
 class ItemRepository {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pizzaria/src/client/screens/auth/register_screen.dart';
-import 'package:pizzaria/src/client/screens/auth/signin_screen.dart';
+import 'package:pizzaria/src/views/auth/register_screen.dart';
+import 'package:pizzaria/src/views/auth/signin_screen.dart';
 import 'package:pizzaria/src/shared/themes/colors/color_schemes.g.dart';
 import 'package:pizzaria/src/widgets/alert_warning_custom.dart';
 

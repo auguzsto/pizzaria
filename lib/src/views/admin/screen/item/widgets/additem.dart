@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:pizzaria/src/shared/controllers/item_controller.dart';
 import 'package:pizzaria/src/shared/themes/colors/color_schemes.g.dart';
-import 'package:pizzaria/src/services/util_service.dart';
+import 'package:pizzaria/src/shared/services/util_service.dart';
 import 'package:pizzaria/src/widgets/textformfield_custom.dart';
 
 final List<String> _labels = [
