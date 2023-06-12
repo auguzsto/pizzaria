@@ -34,6 +34,19 @@ class AuthController extends GetxController {
     );
   }
 
+  Future<void> signUp(String username, String password, String address,
+      String cep, String numberPhone, BuildContext context) async {
+    await authRepository
+        .signUp(username, password, address, cep, numberPhone)
+        .then(
+          (value) => ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("Sua conta foi criada com sucesso"),
+            ),
+          ),
+        );
+  }
+
   Future<void> signOut() async {
     UserModel userModel = Get.find<UserModel>(tag: "user");
     userModel.id = null;

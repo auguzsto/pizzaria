@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pizzaria/src/views/admin/screen/item/item_details_screen.dart';
 import 'package:pizzaria/src/views/admin/screen/item/widgets/additem.dart';
 import 'package:pizzaria/src/shared/services/util_service.dart';
 import 'package:pizzaria/src/shared/controllers/item_controller.dart';
@@ -7,26 +8,20 @@ import 'package:pizzaria/src/shared/themes/colors/color_schemes.g.dart';
 import 'package:pizzaria/src/widgets/progress_custom.dart';
 
 class ItemAdminScreen extends StatefulWidget {
-  const ItemAdminScreen({super.key});
+  ItemAdminScreen({super.key});
 
   @override
   State<ItemAdminScreen> createState() => _ItemAdminScreenState();
 }
 
-final itemController = ItemController();
-final utilService = UtilService();
-
 class _ItemAdminScreenState extends State<ItemAdminScreen> {
+  final itemController = ItemController();
+  final utilService = UtilService();
+
   @override
   void initState() {
     itemController.addListener(() => setState(() {}));
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    itemController;
-    super.dispose();
   }
 
   @override
@@ -35,8 +30,8 @@ class _ItemAdminScreenState extends State<ItemAdminScreen> {
       appBar: AppBar(
         title: const Text("Gerenciamento de itens"),
       ),
-      body: FutureBuilder(
-        future: itemController.get(),
+      body: StreamBuilder(
+        stream: itemController.getLikeStream(),
         builder: (context, snapshot) {
           //Progress data.
           if (!snapshot.hasData) {
@@ -53,31 +48,40 @@ class _ItemAdminScreenState extends State<ItemAdminScreen> {
                 final itemModel =
                     ItemModel.fromMap(snapshot.data?[index] ?? {});
 
-                return ListTile(
-                  title: Text(itemModel.name!),
-                  subtitle: Text(
-                      itemModel.description ?? "Não há descrição neste item"),
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      //Price
-                      IconButton(
-                        onPressed: () {},
-                        icon: Text(
-                          utilService.convertToBRL(itemModel.price!),
+                return GestureDetector(
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          ItemAdminDetailsScreen(id: itemModel.id!),
+                    ),
+                  ),
+                  child: ListTile(
+                    title: Text(itemModel.name!),
+                    subtitle: Text(
+                        itemModel.description ?? "Não há descrição neste item"),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        //Price
+                        IconButton(
+                          onPressed: () {},
+                          icon: Text(
+                            utilService.convertToBRL(itemModel.price!),
+                          ),
                         ),
-                      ),
-                      //Delete
-                      IconButton(
-                        onPressed: () async {
-                          await itemController.delete(itemModel.id!);
-                        },
-                        icon: Icon(
-                          Icons.delete,
-                          color: lightColorScheme.error,
-                        ),
-                      )
-                    ],
+                        //Delete
+                        IconButton(
+                          onPressed: () async {
+                            await itemController.delete(itemModel.id!);
+                          },
+                          icon: Icon(
+                            Icons.delete,
+                            color: lightColorScheme.error,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 );
               },
@@ -95,9 +99,7 @@ class _ItemAdminScreenState extends State<ItemAdminScreen> {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Material(
-                  child: AddItemWindow(),
-                ),
+                AddItemWindow(),
               ],
             ),
           );

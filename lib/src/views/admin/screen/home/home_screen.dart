@@ -48,9 +48,8 @@ class HomeAdminScreen extends StatelessWidget {
 
                   //Containers menu
                   child: GestureDetector(
-                    onTap: () => index.isEqual(3)
-                        ? Get.to(const ItemAdminScreen())
-                        : null,
+                    onTap: () =>
+                        index.isEqual(0) ? Get.to(ItemAdminScreen()) : null,
                     child: Container(
                       decoration: BoxDecoration(
                         border: Border.all(

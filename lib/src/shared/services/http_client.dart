@@ -12,7 +12,7 @@ abstract class IHttpClient {
 }
 
 class HttpClient implements IHttpClient {
-  String baseUrl = "http://localhost:8080";
+  String baseUrl = "http://54.211.132.203:8080";
 
   @override
   Future<void> delete(
