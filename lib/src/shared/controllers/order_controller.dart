@@ -7,6 +7,10 @@ class OrderController {
     return await orderRepository.get();
   }
 
+  Future<void> post(List<String> idItem) async {
+    await orderRepository.post(idItem);
+  }
+
   Future<List> getByUserId(UserModel? userModel) async {
     return await orderRepository.getByUserId(userModel);
   }

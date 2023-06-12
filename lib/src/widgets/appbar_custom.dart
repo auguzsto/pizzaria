@@ -4,6 +4,7 @@ import 'package:pizzaria/src/shared/controllers/cart_controller.dart';
 import 'package:pizzaria/src/shared/models/user_model.dart';
 import 'package:pizzaria/src/shared/themes/colors/color_schemes.g.dart';
 import 'package:pizzaria/src/views/auth/signin_screen.dart';
+import 'package:pizzaria/src/views/client/cart/cart_screen.dart';
 
 class AppBarCustom extends StatefulWidget {
   const AppBarCustom({super.key});
@@ -73,7 +74,11 @@ class Cart extends StatelessWidget {
     final userModel = Get.find<UserModel>(tag: "user");
     return userModel.email != null
         ? IconButton(
-            onPressed: () {},
+            onPressed: () async {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const CartScreen(),
+              ));
+            },
             icon: Stack(
               children: [
                 const Positioned(
@@ -88,8 +93,7 @@ class Cart extends StatelessWidget {
                     child: StreamBuilder(
                       stream: cartController.getLikeStream(),
                       builder: (context, snapshot) {
-                        print(snapshot.data);
-                        return Text("${snapshot.data?.length}" ?? "0");
+                        return Text("${snapshot.data?.length ?? 0}");
                       },
                     ),
                   ),

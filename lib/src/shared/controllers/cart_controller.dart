@@ -14,6 +14,10 @@ class CartController with ChangeNotifier {
     });
   }
 
+  Future<void> delAll() async {
+    return await db.collection('cart').delete();
+  }
+
   Stream<Map<String, dynamic>?> getLikeStream() async* {
     yield* Stream.periodic(const Duration(seconds: 1), (_) {
       return db.collection('cart').get();
