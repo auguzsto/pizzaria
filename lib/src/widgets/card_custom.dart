@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pizzaria/src/shared/controllers/cart_controller.dart';
 import 'package:pizzaria/src/shared/models/item_model.dart';
 import 'package:pizzaria/src/shared/models/user_model.dart';
 import 'package:pizzaria/src/shared/services/util_service.dart';
@@ -21,6 +22,7 @@ class CardCustom extends StatelessWidget {
     final utilService = UtilService();
     final screenSize = MediaQuery.of(context).size;
     final userModel = Get.find<UserModel>(tag: "user");
+    final cartController = CartController();
     return Card(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -120,6 +122,8 @@ class CardCustom extends StatelessWidget {
                         child: AlertSignInCustom(),
                       ),
                     );
+                  } else {
+                    cartController.set(itemModel);
                   }
                 },
                 icon: Row(

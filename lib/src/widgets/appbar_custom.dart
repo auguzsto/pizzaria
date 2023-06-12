@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pizzaria/src/shared/controllers/cart_controller.dart';
 import 'package:pizzaria/src/shared/models/user_model.dart';
 import 'package:pizzaria/src/shared/themes/colors/color_schemes.g.dart';
 import 'package:pizzaria/src/views/auth/signin_screen.dart';
 
-class AppBarCustom extends StatelessWidget {
+class AppBarCustom extends StatefulWidget {
   const AppBarCustom({super.key});
 
   @override
+  State<AppBarCustom> createState() => _AppBarCustomState();
+}
+
+class _AppBarCustomState extends State<AppBarCustom> {
+  @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Avatar(),
-        Logo(),
+        const Avatar(),
+        const Logo(),
         Cart(),
       ],
     );
@@ -58,17 +64,43 @@ class Avatar extends StatelessWidget {
 
 //Cart
 class Cart extends StatelessWidget {
-  const Cart({super.key});
+  Cart({super.key});
+
+  final cartController = CartController();
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {},
-      icon: const Icon(
-        Icons.shopping_cart,
-        size: 28,
-      ),
-    );
+    final userModel = Get.find<UserModel>(tag: "user");
+    return userModel.email != null
+        ? IconButton(
+            onPressed: () {},
+            icon: Stack(
+              children: [
+                const Positioned(
+                  child: Icon(
+                    Icons.shopping_cart,
+                    size: 32,
+                  ),
+                ),
+                Positioned(
+                  child: CircleAvatar(
+                    radius: 11,
+                    child: StreamBuilder(
+                      stream: cartController.getLikeStream(),
+                      builder: (context, snapshot) {
+                        print(snapshot.data);
+                        return Text("${snapshot.data?.length}" ?? "0");
+                      },
+                    ),
+                  ),
+                )
+              ],
+            ),
+          )
+        : const Icon(
+            Icons.shopping_cart,
+            size: 32,
+          );
   }
 }
 

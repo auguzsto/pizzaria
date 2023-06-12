@@ -8,9 +8,14 @@ import 'package:pizzaria/src/shared/models/user_model.dart';
 import 'package:pizzaria/src/views/client/orders/orders_screen.dart';
 import 'package:pizzaria/src/widgets/appbar_custom.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final userModel = Get.find<UserModel>(tag: "user");

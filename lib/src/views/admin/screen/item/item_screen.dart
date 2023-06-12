@@ -52,8 +52,9 @@ class _ItemAdminScreenState extends State<ItemAdminScreen> {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) =>
-                          ItemAdminDetailsScreen(id: itemModel.id!),
+                      builder: (context) => ItemAdminDetailsScreen(
+                        itemModel: itemModel,
+                      ),
                     ),
                   ),
                   child: ListTile(
