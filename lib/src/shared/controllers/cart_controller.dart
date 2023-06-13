@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pizzaria/src/shared/models/user_model.dart';
 import 'package:pizzaria/src/shared/repository/cart_respoitory.dart';
 
-class CartController with ChangeNotifier {
+class CartController extends GetxController {
   final cartRepository = CartRepository();
-
   Future<void> add(List<String> idItem) async {
     await cartRepository.add(idItem);
+    update();
   }
 
   Future<List> getByUserId(UserModel userModel) async {
@@ -15,5 +15,6 @@ class CartController with ChangeNotifier {
 
   Future<void> delete(String id) async {
     cartRepository.delete(id);
+    update();
   }
 }

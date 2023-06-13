@@ -76,7 +76,7 @@ class Cart extends StatelessWidget {
         ? IconButton(
             onPressed: () async {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const CartScreen(),
+                builder: (context) => CartScreen(),
               ));
             },
             icon: Stack(
