@@ -27,7 +27,7 @@ class AuthController extends GetxController {
             return Get.offAll(const HomeAdminScreen());
           }
 
-          Get.offAll(HomeScreen());
+          Get.offAll(const HomeScreen());
         }
         isLoading.value = false;
       },
@@ -54,6 +54,6 @@ class AuthController extends GetxController {
     userModel.vendor = null;
     userModel.basicToken = null;
     userModel.obs.refresh();
-    Get.offAll(HomeScreen());
+    Get.offAll(const HomeScreen());
   }
 }
