@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pizzaria/src/shared/controllers/order_controller.dart';
+import 'package:pizzaria/src/shared/models/order_model.dart';
 import 'package:pizzaria/src/views/admin/screen/home/constants/home_admin.dart';
 import 'package:pizzaria/src/views/admin/screen/item/item_screen.dart';
 import 'package:pizzaria/src/shared/controllers/auth_controller.dart';
@@ -13,6 +15,7 @@ class HomeAdminScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final utilService = UtilService();
     final authController = AuthController();
+    final orderController = OrderController();
     return Scaffold(
       //Appbar
       appBar: AppBar(
@@ -48,8 +51,9 @@ class HomeAdminScreen extends StatelessWidget {
 
                   //Containers menu
                   child: GestureDetector(
-                    onTap: () =>
-                        index.isEqual(0) ? Get.to(ItemAdminScreen()) : null,
+                    onTap: () => index.isEqual(0)
+                        ? Get.to(const ItemAdminScreen())
+                        : null,
                     child: Container(
                       decoration: BoxDecoration(
                         border: Border.all(
@@ -80,6 +84,58 @@ class HomeAdminScreen extends StatelessWidget {
                   ),
                 ),
               ),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Text(
+                  'Pedidos em andamento',
+                  style: TextStyle(fontSize: 32),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: FutureBuilder(
+              future: orderController.get(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+
+                return ListView.separated(
+                  separatorBuilder: (context, index) => const Divider(),
+                  itemCount: snapshot.data!.length,
+                  itemBuilder: (context, index) {
+                    final orderModel =
+                        OrderModel.fromMap(snapshot.data?[index] ?? {});
+
+                    //List oreder
+                    return ListTile(
+                      //ID
+                      title: Text(orderModel.id!),
+
+                      //Items in order
+                      subtitle: Row(
+                        children: List.generate(
+                            orderModel.item!.length,
+                            (index) =>
+                                Text("+ ${orderModel.item![index]['name']}")),
+                      ),
+
+                      //Total price
+                      trailing: Text(
+                        utilService.convertToBRL(orderModel.total ?? 0),
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                    );
+                  },
+                );
+              },
             ),
           ),
         ],

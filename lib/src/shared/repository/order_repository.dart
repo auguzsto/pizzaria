@@ -6,7 +6,13 @@ class OrderRepository {
   final client = HttpClient();
 
   Future<List> get() async {
-    return await client.get(table: "pedido");
+    return await client.get(
+      table: "pedido",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Basic ${Get.find<UserModel>(tag: "user").basicToken}",
+      },
+    );
   }
 
   Future<void> post(List<String> idItem) async {

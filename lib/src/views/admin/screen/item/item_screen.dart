@@ -8,7 +8,7 @@ import 'package:pizzaria/src/shared/themes/colors/color_schemes.g.dart';
 import 'package:pizzaria/src/widgets/progress_custom.dart';
 
 class ItemAdminScreen extends StatefulWidget {
-  ItemAdminScreen({super.key});
+  const ItemAdminScreen({super.key});
 
   @override
   State<ItemAdminScreen> createState() => _ItemAdminScreenState();
@@ -96,7 +96,7 @@ class _ItemAdminScreenState extends State<ItemAdminScreen> {
         onPressed: () {
           showDialog(
             context: context,
-            builder: (context) => Column(
+            builder: (context) => const Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

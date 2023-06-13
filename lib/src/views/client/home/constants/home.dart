@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-List<Widget> _tabBar = [
+List<Widget> _tabBar = const [
   Column(
-    children: const [
+    children: [
       Icon(Icons.local_offer_rounded),
       Text("Ofertas"),
     ],
   ),
   Column(
-    children: const [
+    children: [
       Icon(Icons.shopping_bag),
       Text("Cardápio"),
     ],
   ),
   Column(
-    children: const [
+    children: [
       Icon(Icons.view_list),
       Text("Pedidos"),
     ],

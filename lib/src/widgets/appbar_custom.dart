@@ -79,9 +79,9 @@ class Cart extends StatelessWidget {
                 builder: (context) => CartScreen(),
               ));
             },
-            icon: Stack(
+            icon: const Stack(
               children: [
-                const Positioned(
+                Positioned(
                   child: Icon(
                     Icons.shopping_cart,
                     size: 32,

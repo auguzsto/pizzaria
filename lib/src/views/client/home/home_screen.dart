@@ -9,7 +9,7 @@ import 'package:pizzaria/src/views/client/orders/orders_screen.dart';
 import 'package:pizzaria/src/widgets/appbar_custom.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -21,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final userModel = Get.find<UserModel>(tag: "user");
     final authController = AuthController();
     return DefaultTabController(
+      initialIndex: 1,
       length: 3,
       child: Scaffold(
         appBar: AppBar(

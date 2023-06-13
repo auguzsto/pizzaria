@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:pizzaria/src/shared/controllers/cart_controller.dart';
 import 'package:pizzaria/src/shared/controllers/order_controller.dart';
 import 'package:pizzaria/src/shared/models/cart_model.dart';
-import 'package:pizzaria/src/shared/models/item_model.dart';
 import 'package:pizzaria/src/shared/models/user_model.dart';
 import 'package:pizzaria/src/shared/services/util_service.dart';
 import 'package:pizzaria/src/shared/themes/colors/color_schemes.g.dart';

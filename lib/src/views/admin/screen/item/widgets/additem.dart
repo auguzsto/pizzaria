@@ -19,7 +19,7 @@ final List<IconData> _icons = [
 ];
 
 class AddItemWindow extends StatefulWidget {
-  AddItemWindow({super.key});
+  const AddItemWindow({super.key});
 
   @override
   State<AddItemWindow> createState() => _AddItemWindowState();
