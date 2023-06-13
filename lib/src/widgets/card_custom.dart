@@ -123,7 +123,7 @@ class CardCustom extends StatelessWidget {
                       ),
                     );
                   } else {
-                    cartController.set(itemModel);
+                    await cartController.add([itemModel.id!]);
                   }
                 },
                 icon: Row(

@@ -9,6 +9,10 @@ abstract class IHttpClient {
       {required String table,
       required String id,
       required Map<String, String>? headers});
+  Future<void> deleteByQuery(
+      {required String table,
+      required String id,
+      required Map<String, String>? headers});
 }
 
 class HttpClient implements IHttpClient {
@@ -21,6 +25,17 @@ class HttpClient implements IHttpClient {
       required Map<String, String>? headers}) async {
     await http.delete(
       Uri.parse("$baseUrl/$table/$id"),
+      headers: headers,
+    );
+  }
+
+  @override
+  Future<void> deleteByQuery(
+      {required String table,
+      required String id,
+      required Map<String, String>? headers}) async {
+    await http.delete(
+      Uri.parse("$baseUrl/$table?id=$id"),
       headers: headers,
     );
   }

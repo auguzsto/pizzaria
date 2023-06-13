@@ -1,26 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:localstore/localstore.dart';
-import 'package:pizzaria/src/shared/models/item_model.dart';
+import 'package:pizzaria/src/shared/models/user_model.dart';
+import 'package:pizzaria/src/shared/repository/cart_respoitory.dart';
 
 class CartController with ChangeNotifier {
-  final db = Localstore.instance;
+  final cartRepository = CartRepository();
 
-  Future<void> set(ItemModel itemModel) async {
-    final id = db.collection('cart').doc().id;
-    return await db.collection('cart').doc(id).set({
-      "id": itemModel.id,
-      "name": itemModel.name,
-      "price": itemModel.price,
-    });
+  Future<void> add(List<String> idItem) async {
+    await cartRepository.add(idItem);
   }
 
-  Future<void> delAll() async {
-    return await db.collection('cart').delete();
+  Future<List> getByUserId(UserModel userModel) async {
+    return await cartRepository.getByUserId(userModel);
   }
 
-  Stream<Map<String, dynamic>?> getLikeStream() async* {
-    yield* Stream.periodic(const Duration(seconds: 1), (_) {
-      return db.collection('cart').get();
-    }).asyncMap((event) async => await event);
+  Future<void> delete(String id) async {
+    cartRepository.delete(id);
   }
 }

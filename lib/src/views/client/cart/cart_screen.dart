@@ -1,34 +1,78 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pizzaria/src/shared/controllers/cart_controller.dart';
-import 'package:pizzaria/src/shared/controllers/order_controller.dart';
+import 'package:pizzaria/src/shared/models/cart_model.dart';
+import 'package:pizzaria/src/shared/models/user_model.dart';
+import 'package:pizzaria/src/shared/services/util_service.dart';
+import 'package:pizzaria/src/shared/themes/colors/color_schemes.g.dart';
 
-class CartScreen extends StatelessWidget {
+class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
 
   @override
+  State<CartScreen> createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
+  @override
   Widget build(BuildContext context) {
     final cartController = CartController();
-    final orderController = OrderController();
+    final utilService = UtilService();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Carrinho"),
       ),
-      body: const Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: CircleAvatar(
-              radius: 180,
-              child: Icon(
-                Icons.shopping_cart,
-                size: 180,
-              ),
-            ),
-          ),
-          SizedBox(height: 50),
-          Text(
-              "Ainda estou em desenvolvimento. Confirme seu pedido no botão abaixo")
-        ],
+      body: FutureBuilder(
+        future: cartController.getByUserId(Get.find<UserModel>(tag: "user")),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+
+          //Generate list items in cart.
+          List items = [];
+          return ListView.separated(
+            padding: const EdgeInsets.only(top: 5),
+            separatorBuilder: (context, index) => const Divider(),
+            itemCount: snapshot.data!.length,
+            itemBuilder: (context, index) {
+              //Items in cart
+              items.addAll(snapshot.data![index]['item']);
+
+              //Cart
+              final cartModel = CartModel.fromMap(snapshot.data![index]);
+
+              //List
+              return ListTile(
+                leading: const CircleAvatar(
+                  child: Icon(Icons.local_pizza),
+                ),
+                title: Text(items[index]['name']),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      utilService.convertToBRL(items[index]['price']),
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                    IconButton(
+                      onPressed: () async {
+                        items.remove(index);
+                        await cartController.delete(cartModel.id!);
+                      },
+                      icon: Icon(
+                        Icons.delete,
+                        color: lightColorScheme.error,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
+        },
       ),
       bottomNavigationBar: Column(
         mainAxisSize: MainAxisSize.min,
@@ -42,30 +86,10 @@ class CartScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(0),
                 ),
               ),
-              onPressed: () {
-                orderController
-                    .post(['7ae0504f-a95c-47fd-9904-1bb12b9f2027']); //Alter!!!
-              },
+              onPressed: () {},
               child: const Text("Confirmar"),
             ),
           ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width,
-            height: 36,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.orange.shade100,
-                foregroundColor: Colors.black,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0),
-                ),
-              ),
-              onPressed: () async {
-                await cartController.delAll();
-              },
-              child: const Text("Limpar meu carrinho"),
-            ),
-          )
         ],
       ),
     );

@@ -90,12 +90,7 @@ class Cart extends StatelessWidget {
                 Positioned(
                   child: CircleAvatar(
                     radius: 11,
-                    child: StreamBuilder(
-                      stream: cartController.getLikeStream(),
-                      builder: (context, snapshot) {
-                        return Text("${snapshot.data?.length ?? 0}");
-                      },
-                    ),
+                    child: Center(),
                   ),
                 )
               ],
