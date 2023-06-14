@@ -79,9 +79,9 @@ class Cart extends StatelessWidget {
                 builder: (context) => CartScreen(),
               ));
             },
-            icon: const Stack(
+            icon: Stack(
               children: [
-                Positioned(
+                const Positioned(
                   child: Icon(
                     Icons.shopping_cart,
                     size: 32,
@@ -90,7 +90,18 @@ class Cart extends StatelessWidget {
                 Positioned(
                   child: CircleAvatar(
                     radius: 11,
-                    child: Center(),
+                    child: StreamBuilder(
+                      stream: cartController.getByLikeStream(userModel),
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasData) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+
+                        return Text("${snapshot.data?.length ?? 0}");
+                      },
+                    ),
                   ),
                 )
               ],

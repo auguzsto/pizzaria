@@ -7,6 +7,12 @@ class CartController {
     await cartRepository.add(idItem);
   }
 
+  Stream<List> getByLikeStream(UserModel userModel) async* {
+    yield* Stream.periodic(const Duration(seconds: 1),
+            (_) => cartRepository.getByUserId(userModel))
+        .asyncMap((event) async => await event);
+  }
+
   Future<List> getByUserId(UserModel userModel) async {
     return await cartRepository.getByUserId(userModel);
   }
