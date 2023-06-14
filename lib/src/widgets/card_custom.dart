@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pizzaria/src/shared/constants/app.dart';
 import 'package:pizzaria/src/shared/controllers/cart_controller.dart';
+import 'package:pizzaria/src/shared/handlers/handlers.dart';
 import 'package:pizzaria/src/shared/models/item_model.dart';
 import 'package:pizzaria/src/shared/models/user_model.dart';
 import 'package:pizzaria/src/shared/services/util_service.dart';
@@ -123,7 +125,10 @@ class CardCustom extends StatelessWidget {
                       ),
                     );
                   } else {
-                    await cartController.add([itemModel.id!]);
+                    await cartController.add([itemModel.id!]).then((_) =>
+                        Handlers.message(
+                            message: AppConstants.adicionadoCarrinho,
+                            context: context));
                   }
                 },
                 icon: Row(

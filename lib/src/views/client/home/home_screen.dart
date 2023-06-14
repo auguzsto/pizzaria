@@ -21,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final userModel = Get.find<UserModel>(tag: "user");
     final authController = AuthController();
     return DefaultTabController(
+      initialIndex: 1,
       length: 3,
       child: Scaffold(
         appBar: AppBar(
