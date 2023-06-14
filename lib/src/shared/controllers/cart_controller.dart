@@ -12,6 +12,6 @@ class CartController {
   }
 
   Future<void> delete(String id) async {
-    cartRepository.delete(id);
+    await cartRepository.delete(id);
   }
 }

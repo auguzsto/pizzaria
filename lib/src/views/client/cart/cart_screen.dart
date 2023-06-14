@@ -94,8 +94,7 @@ class CartScreen extends StatelessWidget {
                 await orderController.post(idItem).then(
                       (value) => List.generate(
                         cart.length,
-                        (index) async =>
-                            await cartController.delete(cart[index]['id']),
+                        (index) => cartController.delete(cart[index]['id']),
                       ),
                     );
               },
