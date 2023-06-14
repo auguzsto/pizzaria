@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pizzaria/src/shared/constants/app.dart';
 import 'package:pizzaria/src/shared/controllers/cart_controller.dart';
 import 'package:pizzaria/src/shared/controllers/order_controller.dart';
+import 'package:pizzaria/src/shared/handlers/handlers.dart';
 import 'package:pizzaria/src/shared/models/cart_model.dart';
 import 'package:pizzaria/src/shared/models/user_model.dart';
 import 'package:pizzaria/src/shared/services/util_service.dart';
@@ -91,12 +93,18 @@ class CartScreen extends StatelessWidget {
               onPressed: () async {
                 List<String> idItem =
                     List.generate(items.length, (index) => items[index]['id']);
-                await orderController.post(idItem).then(
+                await orderController
+                    .post(idItem)
+                    .then(
                       (value) => List.generate(
                         cart.length,
                         (index) => cartController.delete(cart[index]['id']),
                       ),
-                    );
+                    )
+                    .whenComplete(() => Handlers.message(
+                        message: AppConstants.pedidoRealizado,
+                        iconData: Icons.check,
+                        context: context));
               },
               child: const Text("Confirmar"),
             ),

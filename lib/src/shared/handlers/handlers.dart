@@ -24,18 +24,36 @@ class Handlers {
 
   static ScaffoldFeatureController<SnackBar, SnackBarClosedReason> message({
     required String message,
+    required IconData iconData,
     required BuildContext context,
   }) {
     return ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: Colors.green,
         content: Container(
+          height: 66,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
           ),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(message),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 22,
+                    backgroundColor: Colors.green.shade100,
+                    foregroundColor: Colors.green.shade900,
+                    child: Icon(iconData),
+                  ),
+                  const SizedBox(width: 15),
+                  Text(
+                    message,
+                    style: const TextStyle(fontSize: 22),
+                  ),
+                ],
+              ),
             ],
           ),
         ),

@@ -128,6 +128,7 @@ class CardCustom extends StatelessWidget {
                     await cartController.add([itemModel.id!]).then((_) =>
                         Handlers.message(
                             message: AppConstants.adicionadoCarrinho,
+                            iconData: Icons.shopping_bag,
                             context: context));
                   }
                 },
