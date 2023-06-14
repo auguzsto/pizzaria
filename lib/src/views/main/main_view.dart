@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pizzaria/src/views/client/home/home_screen.dart';
+import 'dart:html' as html;
 
 class MainView extends StatelessWidget {
   const MainView({super.key});
@@ -39,7 +40,12 @@ class MainView extends StatelessWidget {
                 SizedBox(
                   height: 66,
                   child: ElevatedButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      html.window.open(
+                        'https://github.com/auguzsto/pizzaria/releases/download/beta1.2a/app-release.apk',
+                        'apk',
+                      );
+                    },
                     icon: const Icon(Icons.phone_iphone),
                     label: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
