@@ -98,8 +98,8 @@ class HomeAdminScreen extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: FutureBuilder(
-              future: orderController.get(),
+            child: StreamBuilder(
+              stream: orderController.getLikeStream(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
                   return const Center(

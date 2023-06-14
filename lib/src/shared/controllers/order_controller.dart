@@ -7,6 +7,12 @@ class OrderController {
     return await orderRepository.get();
   }
 
+  Stream<List> getLikeStream() async* {
+    yield* Stream.periodic(
+            const Duration(seconds: 3), (_) => orderRepository.get())
+        .asyncMap((event) async => await event);
+  }
+
   Future<void> post(List<String> idItem) async {
     await orderRepository.post(idItem);
   }
