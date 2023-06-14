@@ -2,6 +2,7 @@ class ItemModel {
   String? id;
   String? name;
   String? description;
+  String? imageUrl;
   double? price;
   double? priceOffer;
   String? idUser;
@@ -10,6 +11,7 @@ class ItemModel {
     this.id,
     this.name,
     this.description,
+    this.imageUrl,
     this.price,
     this.priceOffer,
     this.idUser,
@@ -20,6 +22,8 @@ class ItemModel {
       id: map['id'],
       name: map['name'],
       description: map['description'],
+      imageUrl:
+          "https://i0.wp.com/www.multarte.com.br/wp-content/uploads/2019/03/pizza-png-transparente.png?resize=600%2C600&ssl=1",
       price: map['price'],
       priceOffer: map['priceOffer'],
       idUser: map['idUser'],
@@ -31,6 +35,7 @@ class ItemModel {
       "id": id,
       "name": name,
       "description": description,
+      "imageUrl": imageUrl,
       "price": price,
       "priceOffer": priceOffer,
       "idUser": idUser,

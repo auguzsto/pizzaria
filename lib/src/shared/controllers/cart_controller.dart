@@ -1,8 +1,12 @@
+import 'package:get/get.dart';
 import 'package:pizzaria/src/shared/models/user_model.dart';
 import 'package:pizzaria/src/shared/repository/cart_respoitory.dart';
 
-class CartController {
+class CartController extends GetxController {
   final cartRepository = CartRepository();
+
+  RxBool isLoading = false.obs;
+
   Future<void> add(List<String> idItem) async {
     await cartRepository.add(idItem);
   }

@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pizzaria/src/shared/constants/app.dart';
-import 'package:pizzaria/src/shared/controllers/cart_controller.dart';
-import 'package:pizzaria/src/shared/handlers/handlers.dart';
 import 'package:pizzaria/src/shared/models/item_model.dart';
-import 'package:pizzaria/src/shared/models/user_model.dart';
 import 'package:pizzaria/src/shared/services/util_service.dart';
 import 'package:pizzaria/src/shared/themes/colors/color_schemes.g.dart';
-import 'package:get/get.dart';
 import 'package:pizzaria/src/views/client/menu/constants/menu.dart';
-import 'package:pizzaria/src/widgets/alert_signin_custom.dart';
+import 'package:pizzaria/src/widgets/dialog_item.dart';
 
 class CardCustom extends StatelessWidget {
   final ItemModel itemModel;
@@ -23,8 +18,6 @@ class CardCustom extends StatelessWidget {
   Widget build(BuildContext context) {
     final utilService = UtilService();
     final screenSize = MediaQuery.of(context).size;
-    final userModel = Get.find<UserModel>(tag: "user");
-    final cartController = CartController();
     return Card(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -62,7 +55,7 @@ class CardCustom extends StatelessWidget {
                   right: 0,
                   left: 0,
                   child: Image.network(
-                    "https://i0.wp.com/www.multarte.com.br/wp-content/uploads/2019/03/pizza-png-transparente.png?resize=600%2C600&ssl=1",
+                    itemModel.imageUrl ?? "",
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -116,21 +109,12 @@ class CardCustom extends StatelessWidget {
             child: Center(
               child: IconButton(
                 onPressed: () async {
-                  if (userModel.basicToken == null) {
-                    showDialog(
-                      context: context,
-                      builder: (context) => const Padding(
-                        padding: EdgeInsets.all(18),
-                        child: AlertSignInCustom(),
-                      ),
-                    );
-                  } else {
-                    await cartController.add([itemModel.id!]).then((_) =>
-                        Handlers.message(
-                            message: AppConstants.adicionadoCarrinho,
-                            iconData: Icons.shopping_bag,
-                            context: context));
-                  }
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return DialogItem(itemModel: itemModel);
+                    },
+                  );
                 },
                 icon: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
