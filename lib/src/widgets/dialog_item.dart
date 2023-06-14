@@ -71,6 +71,7 @@ class DialogItem extends StatelessWidget {
                 //Button
                 Obx(
                   () => SizedBox(
+                    //width: MediaQuery.of(context).size.width < 800 ? 155 : null,
                     height: 77,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
