@@ -26,4 +26,10 @@ class ItemController extends ChangeNotifier {
     await itemRepository.delete(id);
     notifyListeners();
   }
+
+  Future<void> patch(String id, String? name, String? description,
+      double? price, double? priceOffer) async {
+    await itemRepository.patch(id, name, description, price, priceOffer);
+    notifyListeners();
+  }
 }

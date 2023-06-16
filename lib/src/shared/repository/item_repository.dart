@@ -39,4 +39,22 @@ class ItemRepository {
       },
     );
   }
+
+  Future<void> patch(String id, String? name, String? description,
+      double? price, double? priceOffer) async {
+    return await client.patch(
+      table: 'item',
+      body: {
+        "id": id,
+        "name": name,
+        "price": price,
+        "description": description,
+        "priceOffer": priceOffer,
+      },
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Basic ${Get.find<UserModel>(tag: "user").basicToken}",
+      },
+    );
+  }
 }

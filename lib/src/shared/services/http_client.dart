@@ -4,7 +4,16 @@ import 'package:http/http.dart' as http;
 abstract class IHttpClient {
   Future<List> get(
       {required String table, String? column, Map<String, String>? headers});
-  Future post({required String table, required Object body, String? column});
+  Future<void> post(
+      {required String table,
+      required Object body,
+      String? column,
+      Map<String, String>? headers});
+  Future<void> patch(
+      {required String table,
+      required Object body,
+      String? column,
+      Map<String, String>? headers});
   Future<void> delete(
       {required String table,
       required String id,
@@ -50,7 +59,7 @@ class HttpClient implements IHttpClient {
       headers: headers,
     );
     if (response.statusCode == 200) {
-      return jsonDecode(response.body);
+      return jsonDecode(utf8.decode(response.body.runes.toList()));
     } else if (response.statusCode == 401) {
       return ['Não autorizado'];
     }
@@ -64,6 +73,25 @@ class HttpClient implements IHttpClient {
       String? column,
       Map<String, String>? headers}) async {
     final response = await http.post(
+      Uri.parse("$baseUrl/$table?$column"),
+      body: jsonEncode(body),
+      headers: headers,
+    );
+
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body.isNotEmpty ? response.body : "{}");
+    } else if (response.statusCode == 401) {
+      print("Não autorizado");
+    }
+  }
+
+  @override
+  Future<void> patch(
+      {required String table,
+      required Object body,
+      String? column,
+      Map<String, String>? headers}) async {
+    final response = await http.patch(
       Uri.parse("$baseUrl/$table?$column"),
       body: jsonEncode(body),
       headers: headers,
