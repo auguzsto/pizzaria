@@ -63,7 +63,9 @@ class DialogItem extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(22.0),
                   child: Text(
-                    utilService.convertToBRL(itemModel.price!),
+                    itemModel.priceOffer! <= 0
+                        ? utilService.convertToBRL(itemModel.price!)
+                        : utilService.convertToBRL(itemModel.priceOffer!),
                     style: const TextStyle(fontSize: 22),
                   ),
                 ),

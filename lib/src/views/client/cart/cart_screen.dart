@@ -59,7 +59,10 @@ class CartScreen extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      utilService.convertToBRL(items[index]['price']),
+                      items[index]['priceOffer'] <= 0
+                          ? utilService.convertToBRL(items[index]['price'])
+                          : utilService
+                              .convertToBRL(items[index]['priceOffer']),
                       style: const TextStyle(fontSize: 16),
                     ),
                     IconButton(

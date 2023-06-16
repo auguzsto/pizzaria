@@ -74,7 +74,10 @@ class CardCustom extends StatelessWidget {
                         ),
                         child: Center(
                           child: Text(
-                            utilService.convertToBRL(itemModel.price!),
+                            itemModel.priceOffer! <= 0
+                                ? utilService.convertToBRL(itemModel.price!)
+                                : utilService
+                                    .convertToBRL(itemModel.priceOffer!),
                             style: GoogleFonts.robotoCondensed(
                                 color: lightColorScheme.onTertiary,
                                 fontSize: screenSize.width < 800 ? null : 15),
