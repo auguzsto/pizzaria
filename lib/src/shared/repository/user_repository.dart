@@ -44,6 +44,7 @@ class UserRepository implements IUser {
         "password": password,
         "numberPhone": numberPhone,
         "address": address,
+        "vendor": vendor,
       },
       headers: {
         "Content-Type": "application/json",

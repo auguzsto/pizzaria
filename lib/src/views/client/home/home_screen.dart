@@ -6,6 +6,7 @@ import 'package:pizzaria/src/views/client/offers/offers_screen.dart';
 import 'package:pizzaria/src/shared/controllers/auth_controller.dart';
 import 'package:pizzaria/src/shared/models/user_model.dart';
 import 'package:pizzaria/src/views/client/orders/orders_screen.dart';
+import 'package:pizzaria/src/views/client/user/comon_user_details_screen.dart';
 import 'package:pizzaria/src/widgets/appbar_custom.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -45,7 +46,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(ComomUserDetailsScreen(userModel: userModel));
+                      },
                       icon: const Row(
                         children: [
                           Icon(Icons.person),

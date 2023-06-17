@@ -13,7 +13,7 @@ class AppWidget extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: lightColorTheme,
-      darkTheme: darkColorTheme,
+      //darkTheme: darkColorTheme,
       home: HomeScreen(),
       onInit: () => Get.put<UserModel>(UserModel(), tag: "user"),
     );

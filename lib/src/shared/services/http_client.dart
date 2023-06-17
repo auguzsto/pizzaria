@@ -83,7 +83,9 @@ class HttpClient implements IHttpClient {
     );
 
     if (response.statusCode == 200) {
-      return jsonDecode(response.body.isNotEmpty ? response.body : "{}");
+      return jsonDecode(response.body.isNotEmpty
+          ? utf8.decode(response.body.runes.toList())
+          : "{}");
     } else if (response.statusCode == 401) {
       print("Não autorizado");
     }

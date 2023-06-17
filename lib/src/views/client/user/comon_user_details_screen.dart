@@ -5,14 +5,12 @@ import 'package:pizzaria/src/shared/models/user_model.dart';
 import 'package:pizzaria/src/shared/services/util_service.dart';
 import 'package:pizzaria/src/widgets/textformfield_custom.dart';
 
-class UserDetailsScreen extends StatelessWidget {
+class ComomUserDetailsScreen extends StatelessWidget {
   final UserModel userModel;
-  UserDetailsScreen({super.key, required this.userModel});
+  ComomUserDetailsScreen({super.key, required this.userModel});
 
   final _controllerEmail = TextEditingController();
-  final _controllerPassword = TextEditingController();
   final _controllerAddress = TextEditingController();
-  final _controllerVendor = TextEditingController();
   final _controllerNumberPhone = TextEditingController();
 
   final utilService = UtilService();
@@ -53,16 +51,6 @@ class UserDetailsScreen extends StatelessWidget {
 
             const SizedBox(height: 10),
 
-            //Input password
-            TextFormFieldCustom(
-              prefixIcon: const Icon(Icons.key),
-              label: Text(userModel.password!),
-              obscureText: true,
-              controller: _controllerPassword,
-            ),
-
-            const SizedBox(height: 10),
-
             //Input number phone
             TextFormFieldCustom(
               prefixIcon: const Icon(Icons.phone),
@@ -83,16 +71,6 @@ class UserDetailsScreen extends StatelessWidget {
               obscureText: false,
               controller: _controllerAddress,
             ),
-
-            const SizedBox(height: 10),
-
-            //Input vendor
-            TextFormFieldCustom(
-              prefixIcon: const Icon(Icons.manage_accounts),
-              label: Text(userModel.vendor.toString()),
-              obscureText: false,
-              controller: _controllerVendor,
-            ),
           ],
         ),
       ),
@@ -112,18 +90,12 @@ class UserDetailsScreen extends StatelessWidget {
                 await userController
                     .update(
                       id: userModel.id!,
-                      password: _controllerPassword.text.isEmpty
-                          ? userModel.password
-                          : _controllerPassword.text,
                       numberPhone: _controllerNumberPhone.text.isEmpty
                           ? userModel.numberPhone
                           : _controllerNumberPhone.text,
                       address: _controllerAddress.text.isEmpty
                           ? userModel.address
                           : _controllerAddress.text,
-                      vendor: _controllerVendor.text.isEmpty
-                          ? userModel.vendor
-                          : int.parse(_controllerVendor.text),
                     )
                     .then((value) => Handlers.message(
                         message: "Usuário atualizado",
