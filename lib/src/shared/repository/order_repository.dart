@@ -38,4 +38,14 @@ class OrderRepository {
       },
     );
   }
+
+  Future<void> delete({required String id}) async {
+    await client.deleteByQuery(
+      table: 'pedido',
+      id: id,
+      headers: {
+        "Authorization": "Basic ${Get.find<UserModel>(tag: "user").basicToken}",
+      },
+    );
+  }
 }

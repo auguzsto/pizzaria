@@ -129,13 +129,27 @@ class HomeAdminScreen extends StatelessWidget {
                         children: List.generate(
                             orderModel.item!.length,
                             (index) =>
-                                Text("+ ${orderModel.item![index]['name']}")),
+                                Text("+ ${orderModel.item![index]['name']} ")),
                       ),
 
                       //Total price
-                      trailing: Text(
-                        utilService.convertToBRL(orderModel.total ?? 0),
-                        style: const TextStyle(fontSize: 16),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            utilService.convertToBRL(orderModel.total ?? 0),
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                          IconButton(
+                            onPressed: () async {
+                              await orderController.delete(id: orderModel.id!);
+                            },
+                            icon: const Icon(
+                              Icons.delete,
+                              color: Colors.red,
+                            ),
+                          ),
+                        ],
                       ),
                     );
                   },

@@ -26,4 +26,8 @@ class OrderController {
   Future<List> getByUserId(UserModel? userModel) async {
     return await orderRepository.getByUserId(userModel);
   }
+
+  Future<void> delete({required String id}) async {
+    await orderRepository.delete(id: id);
+  }
 }
