@@ -10,6 +10,7 @@ class UserDetailsScreen extends StatelessWidget {
   UserDetailsScreen({super.key, required this.userModel});
 
   final _controllerEmail = TextEditingController();
+  final _controllerPassword = TextEditingController();
   final _controllerAddress = TextEditingController();
   final _controllerVendor = TextEditingController();
   final _controllerNumberPhone = TextEditingController();
@@ -52,9 +53,19 @@ class UserDetailsScreen extends StatelessWidget {
 
             const SizedBox(height: 10),
 
-            //Input number phone
+            //Input password
             TextFormFieldCustom(
               prefixIcon: const Icon(Icons.key),
+              label: Text(userModel.password!),
+              obscureText: true,
+              controller: _controllerPassword,
+            ),
+
+            const SizedBox(height: 10),
+
+            //Input number phone
+            TextFormFieldCustom(
+              prefixIcon: const Icon(Icons.phone),
               label: Text(userModel.numberPhone!),
               obscureText: false,
               controller: _controllerNumberPhone,
@@ -104,6 +115,9 @@ class UserDetailsScreen extends StatelessWidget {
                 await userController
                     .update(
                       id: userModel.id!,
+                      password: _controllerPassword.text.isEmpty
+                          ? userModel.password
+                          : _controllerPassword.text,
                       numberPhone: _controllerNumberPhone.text.isEmpty
                           ? userModel.numberPhone
                           : _controllerNumberPhone.text,
