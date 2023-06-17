@@ -3,21 +3,21 @@ import 'package:flutter/material.dart';
 List<String> _labels = [
   // "Financeiro",
   // "Relatórios",
-  // "Clientes",
+  "Clientes",
   "Itens",
 ];
 
 List<String> _description = [
   // "Acompanhe suas finanças",
   // "Acompanhe com relatórios",
-  // "Gerencie seus clientes",
+  "Gerencie seus clientes",
   "Gerencie seus itens",
 ];
 
 List<IconData> _icons = [
   // Icons.monetization_on,
   // Icons.list,
-  // Icons.person,
+  Icons.person,
   Icons.shopping_bag,
 ];
 

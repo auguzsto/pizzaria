@@ -1,12 +1,18 @@
 class UserModel {
   String? id;
   String? email;
+  String? password;
+  String? numberPhone;
+  String? address;
   int? vendor;
   String? basicToken;
 
   UserModel({
     this.id,
     this.email,
+    this.password,
+    this.numberPhone,
+    this.address,
     this.vendor,
     this.basicToken,
   });
@@ -15,6 +21,9 @@ class UserModel {
     return UserModel(
       id: map['id'],
       email: map['email'],
+      password: map['password'],
+      numberPhone: map['numberPhone'],
+      address: map['address'],
       vendor: map['vendor'],
       basicToken: map['basicToken'],
     );
@@ -24,6 +33,9 @@ class UserModel {
     return {
       "id": id,
       "email": email,
+      "password": password,
+      "numberPhone": numberPhone,
+      "address": address,
       "vendor": vendor,
       "basicToken": basicToken,
     };

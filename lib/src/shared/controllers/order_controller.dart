@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:pizzaria/src/shared/models/user_model.dart';
 import 'package:pizzaria/src/shared/repository/order_repository.dart';
 
@@ -8,8 +9,7 @@ class OrderController {
   }
 
   Stream<List> getLikeStream() async* {
-    yield* Stream.periodic(
-            const Duration(seconds: 3), (_) => orderRepository.get())
+    yield* Stream.periodic(3.seconds, (_) => orderRepository.get())
         .asyncMap((event) async => await event);
   }
 

@@ -45,4 +45,20 @@ class UtilService {
       type: MaskAutoCompletionType.lazy,
     );
   }
+
+  TextInputFormatter maskNumberPhone(String value) {
+    return MaskTextInputFormatter(
+      mask: "(##) # ####-####",
+      filter: {"#": RegExp(r'[0-9]')},
+      type: MaskAutoCompletionType.lazy,
+    );
+  }
+
+  TextInputFormatter maskCep(String value) {
+    return MaskTextInputFormatter(
+      mask: "#####-###",
+      filter: {"#": RegExp(r'[0-9]')},
+      type: MaskAutoCompletionType.lazy,
+    );
+  }
 }

@@ -7,6 +7,7 @@ import 'package:pizzaria/src/views/admin/screen/item/item_screen.dart';
 import 'package:pizzaria/src/shared/controllers/auth_controller.dart';
 import 'package:pizzaria/src/shared/themes/colors/color_schemes.g.dart';
 import 'package:pizzaria/src/shared/services/util_service.dart';
+import 'package:pizzaria/src/views/admin/screen/user/user_screen.dart';
 
 class HomeAdminScreen extends StatelessWidget {
   const HomeAdminScreen({super.key});
@@ -51,9 +52,11 @@ class HomeAdminScreen extends StatelessWidget {
 
                   //Containers menu
                   child: GestureDetector(
-                    onTap: () => index.isEqual(0)
+                    onTap: () => index.isEqual(1)
                         ? Get.to(const ItemAdminScreen())
-                        : null,
+                        : index.isEqual(0)
+                            ? Get.to(const UserAdminScreen())
+                            : null,
                     child: Container(
                       decoration: BoxDecoration(
                         border: Border.all(
@@ -86,6 +89,8 @@ class HomeAdminScreen extends StatelessWidget {
               ),
             ),
           ),
+
+          //Orders
           const Padding(
             padding: EdgeInsets.all(8.0),
             child: Row(

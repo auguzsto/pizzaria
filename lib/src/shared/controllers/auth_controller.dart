@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pizzaria/src/shared/handlers/handlers.dart';
 import 'package:pizzaria/src/views/admin/screen/home/home_screen.dart';
 import 'package:pizzaria/src/shared/models/user_model.dart';
 import 'package:pizzaria/src/shared/repository/auth_respository.dart';
@@ -34,17 +35,46 @@ class AuthController extends GetxController {
     );
   }
 
-  Future<void> signUp(String username, String password, String address,
-      String cep, String numberPhone, BuildContext context) async {
-    await authRepository
-        .signUp(username, password, address, cep, numberPhone)
-        .then(
-          (value) => ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text("Sua conta foi criada com sucesso"),
-            ),
-          ),
-        );
+  Future<void> signUp(
+      String username,
+      String password,
+      String rePassword,
+      String address,
+      String cep,
+      String numberPhone,
+      BuildContext context) async {
+    //Check e-mail
+    if (!username.isEmail) {
+      throw Handlers.error(message: "E-mail inválido", context: context);
+    }
+
+    //Check password
+    if (password.length < 7) {
+      throw Handlers.error(
+          message: "Senha deve conter mínimo de 7 caracteres",
+          context: context);
+    }
+
+    if (password != rePassword) {
+      throw Handlers.error(message: "As senhas não iguais", context: context);
+    }
+
+    //Check address
+    if (address.length < 8) {
+      throw Handlers.error(message: "Endreço inválido", context: context);
+    }
+
+    //Check cep
+    if (cep.length < 9) {
+      throw Handlers.error(message: "Cep inválido", context: context);
+    }
+
+    //Check number phone
+    if (numberPhone.length < 16) {
+      throw Handlers.error(message: "Celular inválido", context: context);
+    }
+
+    await authRepository.signUp(username, password, address, cep, numberPhone);
   }
 
   Future<void> signOut() async {

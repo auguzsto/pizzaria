@@ -36,6 +36,22 @@ class _HomeScreenState extends State<HomeScreen> {
         drawer: userModel.email != null
             ? NavigationDrawer(
                 children: [
+                  const SizedBox(height: 25),
+                  CircleAvatar(
+                    radius: 90,
+                    child: Text(
+                      userModel.email![0].toUpperCase(),
+                      style: const TextStyle(fontSize: 44),
+                    ),
+                  ),
+                  IconButton(
+                      onPressed: () {},
+                      icon: const Row(
+                        children: [
+                          Icon(Icons.person),
+                          Text("Meu perfil"),
+                        ],
+                      )),
                   IconButton(
                       onPressed: () => authController.signOut(),
                       icon: const Text("Sair"))
