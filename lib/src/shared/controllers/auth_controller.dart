@@ -84,6 +84,6 @@ class AuthController extends GetxController {
     userModel.vendor = null;
     userModel.basicToken = null;
     userModel.obs.refresh();
-    Get.offAll(HomeScreen());
+    Get.offAll(() => HomeScreen());
   }
 }
