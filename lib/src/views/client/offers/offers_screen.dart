@@ -19,7 +19,7 @@ class _OffersScreenState extends State<OffersScreen> {
 
     //Future
     return FutureBuilder(
-      future: itemController.get(),
+      future: itemController.getOffers(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const ProgressCustom(
@@ -37,16 +37,8 @@ class _OffersScreenState extends State<OffersScreen> {
             (index) {
               final itemModel = ItemModel.fromMap(snapshot.data?[index] ?? {});
 
-              if (itemModel.priceOffer?.sign == null) {
-                return const Center();
-              }
-
-              if (itemModel.priceOffer! > 1) {
-                //Card
-                return CardCustom(itemModel: itemModel);
-              }
-
-              return const SizedBox();
+              //Card
+              return CardCustom(itemModel: itemModel);
             },
           ),
         );

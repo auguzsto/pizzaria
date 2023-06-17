@@ -9,6 +9,10 @@ class ItemRepository {
     return await client.get(table: "item");
   }
 
+  Future<List> getOffers() async {
+    return await client.getByColumn(table: "item", column: "offers");
+  }
+
   Future<List> getById({required String id}) async {
     return await client.get(table: "item", column: "id=$id");
   }

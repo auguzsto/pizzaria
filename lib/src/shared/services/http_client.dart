@@ -4,6 +4,10 @@ import 'package:http/http.dart' as http;
 abstract class IHttpClient {
   Future<List> get(
       {required String table, String? column, Map<String, String>? headers});
+  Future<List> getByColumn(
+      {required String table,
+      required String column,
+      Map<String, String>? headers});
   Future<void> post(
       {required String table,
       required Object body,
@@ -102,5 +106,22 @@ class HttpClient implements IHttpClient {
     } else if (response.statusCode == 401) {
       print("Não autorizado");
     }
+  }
+
+  @override
+  Future<List> getByColumn(
+      {required String table,
+      required String column,
+      Map<String, String>? headers}) async {
+    final response = await http.get(
+      Uri.parse("$baseUrl/$table/$column"),
+      headers: headers,
+    );
+    if (response.statusCode == 200) {
+      return jsonDecode(utf8.decode(response.body.runes.toList()));
+    } else if (response.statusCode == 401) {
+      return ['Não autorizado'];
+    }
+    throw Exception("Error");
   }
 }

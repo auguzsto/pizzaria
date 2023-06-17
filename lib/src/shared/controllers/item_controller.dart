@@ -7,6 +7,10 @@ class ItemController extends ChangeNotifier {
     return await itemRepository.get();
   }
 
+  Future<List> getOffers() async {
+    return await itemRepository.getOffers();
+  }
+
   Stream<List> getLikeStream() async* {
     yield* Stream.periodic(const Duration(seconds: 1), (_) {
       return itemRepository.get();
