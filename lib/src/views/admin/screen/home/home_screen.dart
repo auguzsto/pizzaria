@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pizzaria/src/shared/constants/app.dart';
 import 'package:pizzaria/src/shared/controllers/order_controller.dart';
 import 'package:pizzaria/src/shared/models/order_model.dart';
 import 'package:pizzaria/src/views/admin/screen/home/constants/home_admin.dart';
@@ -8,9 +9,43 @@ import 'package:pizzaria/src/shared/controllers/auth_controller.dart';
 import 'package:pizzaria/src/shared/themes/colors/color_schemes.g.dart';
 import 'package:pizzaria/src/shared/services/util_service.dart';
 import 'package:pizzaria/src/views/admin/screen/user/user_screen.dart';
+import 'package:stomp_dart_client/stomp.dart';
+import 'package:stomp_dart_client/stomp_config.dart';
+import 'package:stomp_dart_client/stomp_frame.dart';
 
-class HomeAdminScreen extends StatelessWidget {
+class HomeAdminScreen extends StatefulWidget {
   const HomeAdminScreen({super.key});
+
+  @override
+  State<HomeAdminScreen> createState() => _HomeAdminScreenState();
+}
+
+class _HomeAdminScreenState extends State<HomeAdminScreen> {
+  late StompClient stompClient;
+
+  void onConnect(StompClient stompClient, StompFrame stompFrame) {
+    stompClient.subscribe(
+        destination: '/topic/message',
+        callback: (frame) {
+          if (frame.body != null) {
+            setState(() {});
+          }
+        });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    stompClient = StompClient(
+      config: StompConfig.SockJS(
+        url: "${AppConstants.baseUrl}/ws-message",
+        onConnect: (stompFrame) => onConnect(stompClient, stompFrame),
+      ),
+    );
+
+    stompClient.activate();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,8 +138,8 @@ class HomeAdminScreen extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: StreamBuilder(
-              stream: orderController.getLikeStream(),
+            child: FutureBuilder(
+              future: orderController.get(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
                   return const Center(
@@ -143,6 +178,7 @@ class HomeAdminScreen extends StatelessWidget {
                           IconButton(
                             onPressed: () async {
                               await orderController.delete(id: orderModel.id!);
+                              setState(() {});
                             },
                             icon: const Icon(
                               Icons.delete,
@@ -160,5 +196,11 @@ class HomeAdminScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    stompClient.deactivate();
+    super.dispose();
   }
 }

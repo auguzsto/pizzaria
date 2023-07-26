@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:pizzaria/src/shared/constants/app.dart';
 
 abstract class IHttpClient {
   Future<List> get(
@@ -29,7 +30,7 @@ abstract class IHttpClient {
 }
 
 class HttpClient implements IHttpClient {
-  String baseUrl = "http://54.211.132.203:8080";
+  String baseUrl = AppConstants.baseUrl;
 
   @override
   Future<void> delete(

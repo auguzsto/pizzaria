@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+const String _baseUrl = "http://54.211.132.203:8080";
 const String _naoAutorizado = "Não autorizado";
 const String _adicionadoCarrinho = "Adicionado ao carrinho";
 const String _pedidoRealizado = "Seu pedido foi realizado";
@@ -12,6 +13,7 @@ const Map<String, String> _headerContentType = {
 };
 
 abstract class AppConstants {
+  static String get baseUrl => _baseUrl;
   static String get naoAutorizado => _naoAutorizado;
   static String get pedidoRealizado => _pedidoRealizado;
   static String get adicionadoCarrinho => _adicionadoCarrinho;

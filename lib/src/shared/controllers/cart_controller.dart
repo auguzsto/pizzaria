@@ -8,7 +8,11 @@ class CartController extends GetxController {
   RxBool isLoading = false.obs;
 
   Future<void> add(List<String> idItem) async {
-    await cartRepository.add(idItem);
+    await cartRepository.add(idItem).then(
+          (value) => cartRepository.client.post(
+            table: 'event',
+          ),
+        );
   }
 
   Stream<List> getByLikeStream(UserModel userModel) async* {
