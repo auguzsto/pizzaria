@@ -20,7 +20,9 @@ class OrderController {
   }
 
   Future<void> post(List<String> idItem) async {
-    await orderRepository.post(idItem);
+    await orderRepository
+        .post(idItem)
+        .then((value) => orderRepository.client.post(table: 'event'));
   }
 
   Future<List> getByUserId(UserModel? userModel) async {
