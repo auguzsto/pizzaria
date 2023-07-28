@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pizzaria/src/shared/handlers/handlers.dart';
-import 'package:pizzaria/src/views/admin/screen/home/home_screen.dart';
+import 'package:pizzaria/src/views/admin/home/home_screen.dart';
 import 'package:pizzaria/src/shared/models/user_model.dart';
 import 'package:pizzaria/src/shared/repository/auth_respository.dart';
 import 'package:pizzaria/src/views/client/home/home_screen.dart';
