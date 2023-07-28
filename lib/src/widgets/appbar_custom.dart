@@ -20,11 +20,11 @@ class AppBarCustom extends StatefulWidget {
 class _AppBarCustomState extends State<AppBarCustom> {
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Avatar(),
-        const Logo(),
+        Avatar(),
+        Logo(),
         Cart(),
       ],
     );
@@ -69,7 +69,7 @@ class Avatar extends StatelessWidget {
 
 //Cart
 class Cart extends StatefulWidget {
-  Cart({super.key});
+  const Cart({super.key});
 
   @override
   State<Cart> createState() => _CartState();
@@ -107,7 +107,7 @@ class _CartState extends State<Cart> {
         ? IconButton(
             onPressed: () async {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => CartScreen(),
+                builder: (context) => const CartScreen(),
               ));
             },
             icon: Stack(

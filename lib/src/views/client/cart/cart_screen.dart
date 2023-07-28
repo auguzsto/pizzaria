@@ -10,7 +10,7 @@ import 'package:pizzaria/src/shared/services/util_service.dart';
 import 'package:pizzaria/src/shared/themes/colors/color_schemes.g.dart';
 
 class CartScreen extends StatefulWidget {
-  CartScreen({super.key});
+  const CartScreen({super.key});
 
   @override
   State<CartScreen> createState() => _CartScreenState();

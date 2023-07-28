@@ -72,7 +72,7 @@ class MainView extends StatelessWidget {
                       elevation: 15,
                     ),
                     onPressed: () {
-                      Get.offAll(HomeScreen());
+                      Get.offAll(const HomeScreen());
                     },
                     icon: const Icon(Icons.web_stories),
                     label: const Text("Continue pelo website"),
