@@ -24,13 +24,17 @@ class AuthController extends GetxController {
             user.numberPhone = value['numberPhone'];
             user.vendor = value['vendor'];
             user.basicToken = value['basicToken'];
+
+            user.vendor == 1
+                ? Get.offAll(const HomeAdminScreen())
+                : Get.offAll(const HomeScreen());
           });
 
-          if (Get.find<UserModel>(tag: "user").vendor == 1) {
-            return Get.offAll(const HomeAdminScreen());
-          }
+          // if (Get.find<UserModel>(tag: "user").vendor == 1) {
+          //   return Get.offAll(const HomeAdminScreen());
+          // }
 
-          Get.offAll(const HomeScreen());
+          // Get.offAll(const HomeScreen());
         }
         isLoading.value = false;
       },
