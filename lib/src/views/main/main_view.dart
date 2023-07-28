@@ -42,7 +42,7 @@ class MainView extends StatelessWidget {
                   child: ElevatedButton.icon(
                     onPressed: () {
                       html.window.open(
-                        'https://github.com/auguzsto/pizzaria/releases/download/beta1.2a/app-release.apk',
+                        'https://github.com/auguzsto/pizzaria/releases/download/beta1.2.2a/app-release.apk',
                         'apk',
                       );
                     },
