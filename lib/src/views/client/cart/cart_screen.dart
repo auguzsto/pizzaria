@@ -104,10 +104,13 @@ class CartScreen extends StatelessWidget {
                         (index) => cartController.delete(cart[index]['id']),
                       ),
                     )
-                    .whenComplete(() => Handlers.message(
-                        message: AppConstants.pedidoRealizado,
-                        iconData: Icons.check,
-                        context: context));
+                    .whenComplete(() {
+                  Handlers.message(
+                      message: AppConstants.pedidoRealizado,
+                      iconData: Icons.check,
+                      context: context);
+                  Navigator.of(context).pop();
+                });
               },
               child: const Text("Confirmar"),
             ),
