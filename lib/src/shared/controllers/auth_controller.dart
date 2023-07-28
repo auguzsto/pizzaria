@@ -29,12 +29,6 @@ class AuthController extends GetxController {
                 ? Get.offAll(const HomeAdminScreen())
                 : Get.offAll(const HomeScreen());
           });
-
-          // if (Get.find<UserModel>(tag: "user").vendor == 1) {
-          //   return Get.offAll(const HomeAdminScreen());
-          // }
-
-          // Get.offAll(const HomeScreen());
         }
         isLoading.value = false;
       },
