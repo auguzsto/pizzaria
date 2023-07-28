@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pizzaria/src/shared/constants/app.dart';
 import 'package:pizzaria/src/shared/controllers/cart_controller.dart';
 import 'package:pizzaria/src/shared/models/user_model.dart';
 import 'package:pizzaria/src/shared/themes/colors/color_schemes.g.dart';
 import 'package:pizzaria/src/views/auth/signin_screen.dart';
 import 'package:pizzaria/src/views/client/cart/cart_screen.dart';
+import 'package:stomp_dart_client/stomp.dart';
+import 'package:stomp_dart_client/stomp_config.dart';
+import 'package:stomp_dart_client/stomp_frame.dart';
 
 class AppBarCustom extends StatefulWidget {
   const AppBarCustom({super.key});
@@ -64,10 +68,37 @@ class Avatar extends StatelessWidget {
 }
 
 //Cart
-class Cart extends StatelessWidget {
+class Cart extends StatefulWidget {
   Cart({super.key});
 
+  @override
+  State<Cart> createState() => _CartState();
+}
+
+class _CartState extends State<Cart> {
   final cartController = CartController();
+  late StompClient stompClient;
+
+  void onConnect(StompClient stompClient, StompFrame stompFrame) {
+    stompClient.subscribe(
+      destination: "/topic/message",
+      callback: (frame) => setState(() {}),
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    stompClient = StompClient(
+      config: StompConfig.SockJS(
+        url: "${AppConstants.baseUrl}/ws-message",
+        onConnect: (stompFrame) => onConnect(stompClient, stompFrame),
+      ),
+    );
+
+    stompClient.activate();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,8 +121,8 @@ class Cart extends StatelessWidget {
                 Positioned(
                   child: CircleAvatar(
                     radius: 11,
-                    child: StreamBuilder(
-                      stream: cartController.getByLikeStream(userModel),
+                    child: FutureBuilder(
+                      future: cartController.getByUserId(userModel),
                       builder: (context, snapshot) {
                         if (!snapshot.hasData) {
                           return const Center(
@@ -111,6 +142,13 @@ class Cart extends StatelessWidget {
             Icons.shopping_cart,
             size: 32,
           );
+  }
+
+  @override
+  void dispose() {
+    stompClient.deactivate();
+
+    super.dispose();
   }
 }
 

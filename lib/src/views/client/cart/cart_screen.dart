@@ -9,15 +9,23 @@ import 'package:pizzaria/src/shared/models/user_model.dart';
 import 'package:pizzaria/src/shared/services/util_service.dart';
 import 'package:pizzaria/src/shared/themes/colors/color_schemes.g.dart';
 
-class CartScreen extends StatelessWidget {
+class CartScreen extends StatefulWidget {
   CartScreen({super.key});
 
+  @override
+  State<CartScreen> createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
   //Generate list items in cart.
   final List items = [];
+
   final List cart = [];
 
   final cartController = CartController();
+
   final orderController = OrderController();
+
   final utilService = UtilService();
 
   @override
@@ -68,6 +76,7 @@ class CartScreen extends StatelessWidget {
                     IconButton(
                       onPressed: () async {
                         await cartController.delete(cartModel.id!);
+                        setState(() {});
                       },
                       icon: Icon(
                         Icons.delete,

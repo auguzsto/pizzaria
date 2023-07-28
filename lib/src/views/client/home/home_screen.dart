@@ -10,7 +10,7 @@ import 'package:pizzaria/src/views/client/user/comon_user_details_screen.dart';
 import 'package:pizzaria/src/widgets/appbar_custom.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
