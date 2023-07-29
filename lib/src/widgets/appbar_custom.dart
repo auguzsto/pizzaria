@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pizzaria/src/shared/constants/app.dart';
 import 'package:pizzaria/src/shared/controllers/cart_controller.dart';
+import 'package:pizzaria/src/shared/controllers/ws_controller.dart';
 import 'package:pizzaria/src/shared/models/user_model.dart';
 import 'package:pizzaria/src/shared/themes/colors/color_schemes.g.dart';
 import 'package:pizzaria/src/views/auth/signin_screen.dart';
 import 'package:pizzaria/src/views/client/cart/cart_screen.dart';
-import 'package:stomp_dart_client/stomp.dart';
-import 'package:stomp_dart_client/stomp_config.dart';
-import 'package:stomp_dart_client/stomp_frame.dart';
 
 class AppBarCustom extends StatefulWidget {
   const AppBarCustom({super.key});
@@ -77,27 +74,19 @@ class Cart extends StatefulWidget {
 
 class _CartState extends State<Cart> {
   final cartController = CartController();
-  late StompClient stompClient;
-
-  void onConnect(StompClient stompClient, StompFrame stompFrame) {
-    stompClient.subscribe(
-      destination: "/topic/message",
-      callback: (frame) => setState(() {}),
-    );
-  }
+  final wsController = WsController();
 
   @override
   void initState() {
     super.initState();
 
-    stompClient = StompClient(
-      config: StompConfig.SockJS(
-        url: "${AppConstants.baseUrl}/ws-message",
-        onConnect: (stompFrame) => onConnect(stompClient, stompFrame),
-      ),
-    );
+    wsController.listener.addListener(() {
+      if (mounted) {
+        setState(() {});
+      }
+    });
 
-    stompClient.activate();
+    wsController.client.activate();
   }
 
   @override
@@ -146,8 +135,6 @@ class _CartState extends State<Cart> {
 
   @override
   void dispose() {
-    stompClient.deactivate();
-
     super.dispose();
   }
 }

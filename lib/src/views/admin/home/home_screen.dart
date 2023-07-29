@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pizzaria/src/shared/constants/app.dart';
 import 'package:pizzaria/src/shared/controllers/order_controller.dart';
+import 'package:pizzaria/src/shared/controllers/ws_controller.dart';
 import 'package:pizzaria/src/shared/models/order_model.dart';
 import 'package:pizzaria/src/views/admin/home/constants/home_admin.dart';
 import 'package:pizzaria/src/views/admin/item/item_screen.dart';
@@ -9,9 +9,6 @@ import 'package:pizzaria/src/shared/controllers/auth_controller.dart';
 import 'package:pizzaria/src/shared/themes/colors/color_schemes.g.dart';
 import 'package:pizzaria/src/shared/services/util_service.dart';
 import 'package:pizzaria/src/views/admin/user/user_screen.dart';
-import 'package:stomp_dart_client/stomp.dart';
-import 'package:stomp_dart_client/stomp_config.dart';
-import 'package:stomp_dart_client/stomp_frame.dart';
 
 class HomeAdminScreen extends StatefulWidget {
   const HomeAdminScreen({super.key});
@@ -20,31 +17,20 @@ class HomeAdminScreen extends StatefulWidget {
   State<HomeAdminScreen> createState() => _HomeAdminScreenState();
 }
 
+final wsController = WsController();
+
 class _HomeAdminScreenState extends State<HomeAdminScreen> {
-  late StompClient stompClient;
-
-  void onConnect(StompClient stompClient, StompFrame stompFrame) {
-    stompClient.subscribe(
-        destination: '/topic/message',
-        callback: (frame) {
-          if (frame.body != null) {
-            setState(() {});
-          }
-        });
-  }
-
   @override
   void initState() {
     super.initState();
 
-    stompClient = StompClient(
-      config: StompConfig.SockJS(
-        url: "${AppConstants.baseUrl}/ws-message",
-        onConnect: (stompFrame) => onConnect(stompClient, stompFrame),
-      ),
-    );
+    wsController.listener.addListener(() {
+      if (mounted) {
+        setState(() {});
+      }
+    });
 
-    stompClient.activate();
+    wsController.client.activate();
   }
 
   @override
@@ -200,7 +186,7 @@ class _HomeAdminScreenState extends State<HomeAdminScreen> {
 
   @override
   void dispose() {
-    stompClient.deactivate();
+    wsController.client.deactivate();
     super.dispose();
   }
 }
